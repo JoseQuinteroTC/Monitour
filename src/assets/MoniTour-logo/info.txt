@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Lekton-Regular
+font link: https://fonts.google.com/specimen/Lekton
+font author: ISIA Urbino
+font author site: http://lektongroups.blogspot.ca/
+Slogan Font: Questrial-Regular.otf
+
+icon designer: Derrick Snider
+icon designer link: /derrick_snider
+        
+{"bg":"#28003A","icon":"#E46948","font":"#ffffff","slogan":"#ffffff"}
+      

@@ -1,6 +1,150 @@
-
-<app-navbar></app-navbar>
-
-<router-outlet></router-outlet>
-
-<app-footer></app-footer>
+ <!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-sm" id="mainNav">
+  <div class="container p-2 px-4 px-lg-5">
+      <a class="navbar-brand" href="#page-top">Monitour</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#about">Asignaturas</a></li>
+              <li class="nav-item"><a class="nav-link" href="#projects">Ingresar</a></li>
+          </ul>
+      </div>
+  </div>
+</nav>
+<!-- Masthead-->
+<header class="masthead" id="page-top">
+  <div class="container position-relative">
+      <div class="row justify-content-center">
+          <div class="col-xl-6">
+              <div class="text-center text-white">
+                  <!-- Page heading-->
+                  <h1 class="mb-4">Monitour</h1>
+                  <p class="mb-4 heading-sub"> Ponte en contacto con monitores publicos o privados para reforzar tu aprendizaje</p>
+                  <div class="input-group mb-3 bg-white p-2 rounded-pill shadow">
+                    <span class="input-group-text search-bar-icon">
+                      <img src="assets/img/book-open-svgrepo-com.svg" alt="libro" height="25px">
+                    </span>
+                    <input type="text" class="form-control search-bar-input" placeholder="Nombre de la asignatura" aria-label="Username" aria-describedby="basic-addon1">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
+<!-- Icons Grid-->
+<section class="features-icons bg-light text-center">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-4">
+              <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                  <div class="d-flex h-5 grid-icon mb-2"><img src="assets/img/buscar.svg" class="mx-auto" alt="buscar"></div>
+                  <h3>Busca</h3>
+                  <p class="lead mb-0">Consulta libremente monitorias para las asignaturas en las que necesitas ayuda</p>
+              </div>
+          </div>
+          <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                <div class="d-flex h-5 grid-icon mb-2"><img src="assets/img/contacto.svg" class="mx-auto" alt="buscar"></div>
+                  <h3>Contacta</h3>
+                  <p class="lead mb-0">Te facilitamos toda la informacion necesaria para que puedas asistir a las monitorias que buscas</p>
+              </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="d-flex h-5 grid-icon mb-2"><img src="assets/img/aprende.svg" class="mx-auto" alt="buscar"></div>
+              <h3>Aprende</h3>
+              <p class="lead mb-0">Participa de las monitorias disponibles y desarrolla tus conocimientos!</p>
+          </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- Image Showcases-->
+<section class="showcase">
+  <div class="container-fluid p-0">
+      <div class="row g-0">
+          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/asignatures.jpg')"></div>
+          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>Mejora tu rendimiento academico</h2>
+              <p class="lead mb-2">
+                ¡Encuentra la ayuda que necesitas en tus estudios! Consulta las monitorías disponibles para las distintas asignaturas
+                y obtén la guía necesaria para superar tus retos académicos.
+              </p>
+              <button type="button" class="btn btn-primary">Asignaturas disponibles</button>
+          </div>
+      </div>
+  </div>
+  <div class="row g-0">
+    <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/img/students.jpg')"></div>
+    <div class="col-lg-6 my-auto showcase-text">
+        <h2>Inscribete como monitor</h2>
+        <p class="lead mb-2">
+          Comparte tus conocimientos y ayuda a los demás inscribiéndote como monitor.
+          Personaliza tus lecciones y haz una diferencia en la vida de tus alumnos. ¡Inscríbete ahora!
+        </p>
+        <button type="button" class="btn btn-primary">Inscribirse</button>
+      </div>
+</div>
+</section>
+<!-- Testimonials-->
+<section class="testimonials text-center bg-light">
+  <div class="container">
+      <h2 class="mb-5">What people are saying...</h2>
+      <div class="row">
+          <div class="col-lg-4">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                  <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-1.jpg" alt="..." />
+                  <h5>Margaret E.</h5>
+                  <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+              </div>
+          </div>
+          <div class="col-lg-4">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                  <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-2.jpg" alt="..." />
+                  <h5>Fred S.</h5>
+                  <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
+              </div>
+          </div>
+          <div class="col-lg-4">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                  <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-3.jpg" alt="..." />
+                  <h5>Sarah W.</h5>
+                  <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- Footer-->
+<footer class="footer">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+              <ul class="list-inline mb-2">
+                  <li class="list-inline-item"><a href="#!">Sobre nosotros</a></li>
+                  <li class="list-inline-item">⋅</li>
+                  <li class="list-inline-item"><a href="#!">Terminos de uso</a></li>
+                  <li class="list-inline-item">⋅</li>
+                  <li class="list-inline-item"><a href="#!">Politicas de privacidad</a></li>
+              </ul>
+              <p class="text-muted small mb-4 mb-lg-0">&copy; Monitour 2023. Todos los derechos reservados.</p>
+          </div>
+          <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+              <ul class="list-inline mb-0">
+                  <li class="list-inline-item me-4">
+                      <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                  </li>
+                  <li class="list-inline-item me-4">
+                      <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                  </li>
+                  <li class="list-inline-item">
+                      <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</footer>

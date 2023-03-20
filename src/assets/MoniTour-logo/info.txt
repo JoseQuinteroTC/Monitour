@@ -1,14 +1,14 @@
 
 Hope you enjoy your new logo, here are the people that
 made your beautiful logo happen :)
-font name: Lekton-Regular
-font link: https://fonts.google.com/specimen/Lekton
-font author: ISIA Urbino
-font author site: http://lektongroups.blogspot.ca/
-Slogan Font: Questrial-Regular.otf
+font name: CooperHewitt-Semibold
+font link: https://www.cooperhewitt.org/open-source-at-cooper-hewitt/cooper-hewitt-the-typeface-by-chester-jenkins/
+font author: Chester Jenkins
+font author site: https://vllg.com/
 
-icon designer: Derrick Snider
-icon designer link: /derrick_snider
+
+icon designer: Matthew Hock
+icon designer link: /matthewhock
         
-{"bg":"#28003A","icon":"#E46948","font":"#ffffff","slogan":"#ffffff"}
+{"bg":"transparent","icon-gradient-0":"#006678","icon-gradient-1":"#4FA8FF","font":"#000000","slogan":"#141414"}
       

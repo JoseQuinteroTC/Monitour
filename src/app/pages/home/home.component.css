@@ -18,3 +18,12 @@
 .grid-icon {
   height: 5rem;
 }
+
+.navbar-brand > img {
+  height: 100%;
+  width: 10rem;
+}
+
+.nav-login > a{
+  color: #4FA8FF;
+}

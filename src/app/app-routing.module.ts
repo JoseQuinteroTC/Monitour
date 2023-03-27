@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
           ),
       },
     ],
+  },
+  {
+    path: 'busqueda',
+    loadChildren: () => import('src/app/pages/busqueda/busqueda.module').then((m)=> m.BusquedaModule)
   },
   {
     path: '**',

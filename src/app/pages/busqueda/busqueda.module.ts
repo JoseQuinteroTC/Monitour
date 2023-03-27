@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeRoutingModule } from './home-routing.module';
+import { BusquedaRoutingModule } from './busqueda-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { HomeComponent } from './home.component';
+import { BusquedaComponent } from './busqueda.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    BusquedaComponent
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
+    BusquedaRoutingModule,
     SharedModule
   ]
 })
-export class HomeModule { }
+export class BusquedaModule { }

@@ -1,29 +1,18 @@
-<nav class="navbar navbar-expand-lg bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"
-      ><img
-        src="../assets/MoniTour-logo/vector/default-monochrome.svg"
-        height="50"
-        width="150"
-        alt=""
-    /></a>
-    <div>
-      <form class="d-flex " role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-    <div>
-      <button class="btn btn-outline-success btn-lg" type="submit">
-        Registrarse
+ <!-- Navigation-->
+ <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-sm" id="mainNav">
+  <div class="d-flex w-100 p-2 px-4 px-lg-5">
+      <a class="navbar-brand" routerLink="">
+        <img src="assets/MoniTour-logo/vector/default-monochrome.svg" alt="Logo Monitour">
+      </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
       </button>
-      <button class="btn btn-dark btn-lg" type="submit">Iniciar sesion</button>
-    </div>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" routerLink="busqueda">Asignaturas</a></li>
+              <li class="nav-item nav-login"><a class="nav-link" href="#projects">Ingresar</a></li>
+          </ul>
+      </div>
   </div>
 </nav>
-

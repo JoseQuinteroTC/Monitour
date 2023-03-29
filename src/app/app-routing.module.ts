@@ -18,6 +18,10 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'login',
+    loadChildren: () => import('src/app/pages/login/login.module').then((m)=> m.LoginModule)
+  },
+  {
     path: 'busqueda',
     loadChildren: () => import('src/app/pages/busqueda/busqueda.module').then((m)=> m.BusquedaModule)
   },
@@ -25,6 +29,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: '',
   }
+
 ];
 
 @NgModule({

@@ -18,3 +18,7 @@
 .grid-icon {
   height: 5rem;
 }
+
+body{
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(79,150,255,0.2497373949579832) 100%);
+}

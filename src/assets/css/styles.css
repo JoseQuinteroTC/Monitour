@@ -85,7 +85,6 @@ body {
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
   background: rgb(255,255,255);
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(79,150,255,0.2497373949579832) 100%);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

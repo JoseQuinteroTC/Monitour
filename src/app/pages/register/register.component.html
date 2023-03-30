@@ -26,12 +26,12 @@
                   </div>
 
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
-                    Create your account
+                    Crea tu cuenta
                   </h5>
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example17"
-                      >Full name</label
+                      >Nombre completo</label
                     >
                     <input
                       type="text"
@@ -43,7 +43,7 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example17"
-                      >Email address</label
+                      >Correo electrónico</label
                     >
                     <input
                       type="email"
@@ -55,7 +55,7 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example17"
-                      >Phone number</label
+                      >Teléfono</label
                     >
                     <input
                       type="tel"
@@ -79,7 +79,7 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example27"
-                      >Password</label
+                      >Contraseña</label
                     >
                     <input
                       type="password"
@@ -90,13 +90,15 @@
                   </div>
 
                   <div class="pt-1 mb-4">
-                    <button id="login-btn" class="btn btn-lg btn-block" type="button">
-                      Register
+                    <button id="login-btn" class="btn btn-primary btn-lg btn-block" type="button">
+                      Registrarse
                     </button>
                   </div>
 
-                  <a class="small text-muted" href="#!">Login</a>
-
+                  <p class="mb-5 pb-lg-2" style="color: #393f81">
+                    ¿Ya tienes una cuenta?
+                    <a [routerLink]="['/login']" style="color: #393f81">Inicia sesión</a>
+                  </p>
 
                 </form>
               </div>

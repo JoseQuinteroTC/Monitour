@@ -4,16 +4,16 @@
       <div class="col col-xl-10">
         <div class="card" style="border-radius: 1rem">
           <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
+            <div class="col-md-6 col-6 d-none d-md-block">
               <img
                 src="../../../assets/img/login-img.jpg"
                 alt="login form"
-                class="img-fluid"
+                class="img-fluid h-100"
                 style="border-radius: 1rem 0 0 1rem"
               />
             </div>
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
+            <div class="col-md-6 col-6 d-flex align-items-center">
+              <div class="card-body p-4 p-5 text-black">
                 <form>
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <img
@@ -25,18 +25,30 @@
                   </div>
 
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
-                    Crea tu cuenta
+                    Registra una nueva cuenta
                   </h5>
 
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example17"
-                      >Nombre completo</label
-                    >
-                    <input
-                      type="text"
-                      id="form2Example17"
-                      class="form-control form-control-lg"
-                    />
+                  <div class="row form-outline mb-4">
+                    <div class="col-6">
+                      <label class="form-label" for="form2Example17">
+                        Nombre
+                      </label>
+                      <input
+                        type="text"
+                        id="form2Example17"
+                        class="form-control form-control"
+                      />
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label" for="form2Example17">
+                        Apellidos
+                      </label>
+                      <input
+                        type="text"
+                        id="form2Example17"
+                        class="form-control form-control"
+                      />
+                    </div>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -46,46 +58,9 @@
                     <input
                       type="email"
                       id="form2Example17"
-                      class="form-control form-control-lg"
+                      class="form-control form-control"
                     />
-                  </div>
 
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example17"
-                      >Teléfono</label
-                    >
-                    <input
-                      type="tel"
-                      id="form2Example17"
-                      class="form-control form-control-lg"
-                    />
-                  </div>
-
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example17">Rol</label>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                      />
-                      <label class="form-check-label" for="flexRadioDefault1">
-                        Monitor
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault2"
-                        checked
-                      />
-                      <label class="form-check-label" for="flexRadioDefault2">
-                        Estudiante
-                      </label>
-                    </div>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -95,26 +70,35 @@
                     <input
                       type="password"
                       id="form2Example27"
-                      class="form-control form-control-lg"
+                      class="form-control form-control"
                     />
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example27"
+                      >Confirmar contraseña</label
+                    >
+                    <input
+                      type="password"
+                      id="form2Example27"
+                      class="form-control form-control"
+                    />
+
                   </div>
 
                   <div class="pt-1 mb-4">
-                    <button
-                      type="submit"
-                      id="login-btn"
-                      class="btn btn-primary btn-lg btn-block"
-                    >
-                      Registrarse
+                    <button id="login-btn" class="btn btn-primary btn btn-block" type="button">
+                     Registrarse
                     </button>
                   </div>
 
-                  <p class="mb-5 pb-lg-2" style="color: #393f81">
-                    ¿Ya tienes una cuenta?
-                    <a [routerLink]="['/login']" style="color: #393f81"
-                      >Inicia sesión</a
-                    >
-                  </p>
+                  <div class="row gap-3">
+                    <p class="pb-2" style="color: #393f81">
+                      ¿Ya tienes una cuenta?
+                      <a [routerLink]="['/login']" style="color: #393f81">Ingresa aqui</a>
+                    </p>
+                  </div>
                 </form>
               </div>
             </div>

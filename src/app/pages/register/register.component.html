@@ -12,7 +12,7 @@
                 style="border-radius: 1rem 0 0 1rem"
               />
             </div>
-            <div class="col-md-6 col-6 d-flex align-items-center">
+            <div class="col-md-6 col-12 d-flex align-items-center">
               <div class="card-body p-4 p-5 text-black">
                 <form [formGroup]="registerForm" (ngSubmit)="registro()">
                   <div class="d-flex align-items-center mb-3 pb-1">
@@ -38,9 +38,10 @@
                         id="nombre"
                         formControlName="nombre"
                         class="form-control"
+                        [ngClass]="{invalid: validarCampo('nombre')}"
                       />
                       <div *ngIf="validarCampo('nombre')">
-                        <div *ngIf="registerForm.get('nombre')?.errors?.['required']">Campo requerido</div>
+                        <div *ngIf="registerForm.get('nombre')?.errors?.['required']" class="invalid-text">Campo requerido</div>
                       </div>
                     </div>
                     <div class="col-6">
@@ -52,9 +53,10 @@
                         formControlName="apellidos"
                         id="apellidos"
                         class="form-control"
+                        [ngClass]="{invalid: validarCampo('apellidos')}"
                       />
                       <div *ngIf="validarCampo('apellidos')">
-                        <div *ngIf="registerForm.get('apellidos')?.errors?.['required']">Campo requerido</div>
+                        <div *ngIf="registerForm.get('apellidos')?.errors?.['required']" class="invalid-text">Campo requerido</div>
                       </div>
                     </div>
                   </div>
@@ -69,10 +71,11 @@
                       email="true"
                       formControlName="correo"
                       class="form-control"
+                      [ngClass]="{invalid: validarCampo('correo')}"
                     />
                     <div *ngIf="validarCampo('correo')">
-                      <div *ngIf="registerForm.get('correo')?.errors?.['required']">Campo requerido</div>
-                      <div *ngIf="registerForm.get('correo')?.errors?.['email']">Correo invalido</div>
+                      <div *ngIf="registerForm.get('correo')?.errors?.['required']" class="invalid-text">Campo requerido</div>
+                      <div *ngIf="registerForm.get('correo')?.errors?.['email']" class="invalid-text">Correo invalido</div>
                     </div>
                   </div>
 
@@ -85,9 +88,10 @@
                       id="contraseña"
                       formControlName="contraseña"
                       class="form-control"
+                      [ngClass]="{invalid: validarCampo('contraseña')}"
                     />
                     <div *ngIf="validarCampo('contraseña')">
-                      <div *ngIf="registerForm.get('contraseña')?.errors?.['required']">Campo requerido</div>
+                      <div *ngIf="registerForm.get('contraseña')?.errors?.['required']" class="invalid-text">Campo requerido</div>
                     </div>
                   </div>
 
@@ -100,9 +104,11 @@
                       formControlName="confirmarContraseña"
                       id="confirmarContraseña"
                       class="form-control"
+                      [ngClass]="{invalid: validarCampo('confirmarContraseña')}"
                     />
                     <div *ngIf="validarCampo('confirmarContraseña')">
-                      <div *ngIf="registerForm.get('confirmarContraseña')?.errors?.['required']">Campo requerido</div>
+                      <div *ngIf="registerForm.get('confirmarContraseña')?.errors?.['required']" class="invalid-text">Campo requerido</div>
+                      <div *ngIf="registerForm.get('confirmarContraseña')?.errors?.['notSame']" class="invalid-text">Las contraseñas deben ser iguales</div>
                     </div>
                   </div>
 

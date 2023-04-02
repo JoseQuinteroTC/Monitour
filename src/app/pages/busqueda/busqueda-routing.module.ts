@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: BusquedaComponent
-  },
-  {
-    path: 'monitores',
-    component: GridMonitoresComponent
   }
 ];
 

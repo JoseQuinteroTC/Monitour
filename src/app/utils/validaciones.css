@@ -1,0 +1,8 @@
+.invalid {
+  border-color: red;
+}
+
+.invalid-text {
+  color: red;
+  font-size: .9rem;
+}

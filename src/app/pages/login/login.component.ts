@@ -18,7 +18,10 @@ export class LoginComponent {
 
   login() {
     this.submitted = true;
-    this.authService.userLogin(this.correoUsuario, this.claveUsuario).subscribe(resp => console.log(resp));
+    let body = new FormData();
+    body.append('email', this.correoUsuario);
+    body.append('password', this.claveUsuario);
+    this.authService.userLogin(body).subscribe(resp => console.log(resp));
     console.log(this.correoUsuario, this.claveUsuario)
   }
 }

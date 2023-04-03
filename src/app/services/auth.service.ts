@@ -11,10 +11,10 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
-  userLogin(email: string, clave:string) {
-    return this.http.get(
+  userLogin(body: FormData) {
+    return this.http.post(
       environment.API_URL + environment.methods.login,
-      {}
+      body
     )
   }
 }

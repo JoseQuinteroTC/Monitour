@@ -21,6 +21,7 @@ export class AuthService {
   userRegister(body: FormData) {
     return this.http.post(
       environment.API_URL + environment.methods.register,
+      
       body
     )
   }

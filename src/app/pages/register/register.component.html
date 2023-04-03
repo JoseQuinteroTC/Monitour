@@ -86,12 +86,14 @@
                     <input
                       type="password"
                       id="contraseña"
+                      minlength="8"
                       formControlName="contraseña"
                       class="form-control"
                       [ngClass]="{invalid: validarCampo('contraseña')}"
                     />
                     <div *ngIf="validarCampo('contraseña')">
                       <div *ngIf="registerForm.get('contraseña')?.errors?.['required']" class="invalid-text">Campo requerido</div>
+                      <div *ngIf="registerForm.get('contraseña')?.errors?.['minlength']" class="invalid-text">La contraseña debe tener minimo 8 caracteres</div>
                     </div>
                   </div>
 

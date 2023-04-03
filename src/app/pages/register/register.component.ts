@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit{
     private fb: FormBuilder
   ){ }
 
+  submitted: boolean = false;
   registerForm: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
@@ -25,6 +26,7 @@ export class RegisterComponent implements OnInit{
   }
 
   registro() {
+    this.submitted = true;
     this.registerForm.markAllAsTouched();
     this.contraseñasIguales();
     console.log(this.registerForm.get('nombre')?.value)
@@ -34,7 +36,8 @@ export class RegisterComponent implements OnInit{
   }
 
   validarCampo(campo: string) {
-    return this.registerForm.get(campo)?.invalid && (this.registerForm.get(campo)?.dirty || this.registerForm.get(campo)?.touched);
+    return this.submitted && this.registerForm.get(campo)?.invalid
+    && (this.registerForm.get(campo)?.dirty || this.registerForm.get(campo)?.touched);
   }
 
   contraseñasIguales() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit{
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService
   ){ }
 
   submitted: boolean = false;
@@ -29,9 +31,16 @@ export class RegisterComponent implements OnInit{
     this.submitted = true;
     this.registerForm.markAllAsTouched();
     this.contraseñasIguales();
+
     console.log(this.registerForm.get('nombre')?.value)
     if ( this.registerForm.valid){
-      console.log('registrado')
+      let body = new FormData();
+      body.append('name', this.registerForm.get('nombre')?.value);
+      body.append('lastname', this.registerForm.get('apellidos')?.value);
+      body.append('email', this.registerForm.get('correo')?.value);
+      body.append('password', this.registerForm.get('contraseña')?.value);
+
+      this.authService.userRegister(body).subscribe(resp => console.log(resp));
     }
   }
 

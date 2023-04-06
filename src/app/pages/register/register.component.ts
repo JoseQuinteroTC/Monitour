@@ -36,9 +36,11 @@ export class RegisterComponent implements OnInit{
     if ( this.registerForm.valid){
       let body = new FormData();
       body.append('name', this.registerForm.get('nombre')?.value);
-      body.append('lastname', this.registerForm.get('apellidos')?.value);
+      body.append('lastName', this.registerForm.get('apellidos')?.value);
       body.append('email', this.registerForm.get('correo')?.value);
       body.append('password', this.registerForm.get('contraseña')?.value);
+
+      console.log(body);
 
       this.authService.userRegister(body).subscribe(resp => console.log(resp));
     }

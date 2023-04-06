@@ -22,6 +22,7 @@ export class LoginComponent {
     body.append('email', this.correoUsuario);
     body.append('password', this.claveUsuario);
     this.authService.userLogin(body).subscribe(resp => console.log(resp));
+    console.log(body);
     console.log(this.correoUsuario, this.claveUsuario)
   }
 }

@@ -23,6 +23,7 @@ export class GridMonitoresComponent implements OnInit{
         this.monitor = monitores[0];
         const base64String = this.monitor.img_profile; // tu cadena Base64
         this.imagenMonitor = `data:image/jpg;base64,${base64String}`;
+        console.log('hola')
       }
     )
   }

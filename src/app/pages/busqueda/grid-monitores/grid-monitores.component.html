@@ -1,23 +1,32 @@
 <div class="main-content">
-  <div class="d-grid gap-0 column-gap-3">
-    <div class="p-2 g-col-6">Grid item 1</div>
-    <div class="p-2 g-col-6">Grid item 2</div>
-    <div class="p-2 g-col-6">Grid item 3</div>
-    <div class="p-2 g-col-6">Grid item 4</div>
-  </div>
-  <div class="card col-4">
-    <div class="photo">
-        <img src="https://images.pexels.com/photos/2346006/pexels-photo-2346006.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500">
-        <div class="photos">Photos</div>
+  <div class="container">
+    <div class="col-lg-8 mx-auto">
+      <form class="d-flex gap-4">
+        <input class="form-control form-control-lg" type="search" placeholder="Buscar" aria-label="Buscar">
+        <button class="btn-primary position-static btn btn-lg" type="button">Buscar</button>
+      </form>
     </div>
-    <div class="content">
-        <p class="txt4">City Lights In Newyork</p>
-        <p class="txt5">A city that never sleeps</p>
-        <p class="txt2">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 my-4">
+      <div *ngFor="let monitor of monitores" class="col">
+        <div class="card card-clickable rounded-5">
+          <img [src]="monitor.foto" class="card-img-top rounded-top-5 ">
+          <div class="card-body">
+            <h3 class="card-title">{{ monitor.nombre }}</h3>
+            <h6 class="card-subtitle">{{ monitor.materia }}</h6>
+            <p class="card-text">{{ monitor.descripcion }}</p>
+            <a [routerLink]="['./monitor/',monitor.id]" class="stretched-link"></a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer">
-        <p><a class="waves-effect waves-light btn" href="#">Read More</a><a id="heart"><span class="like"><i class="fab fa-gratipay"></i>Like</span></a></p>
-        <p class="txt3"><i class="far fa-clock"></i>10 Minutes Ago <span class="comments"><i class="fas fa-comments"></i>45 Comments</span></p>
+    <div class="col">
+      <div class="card card-clickable rounded-5">
+        <img *ngIf="imagenMonitor" [src]="imagenMonitor" class="card-img-top rounded-top-5 ">
+        <div class="card-body">
+          <h3 class="card-title">{{ monitor.description }}</h3>
+          <h6 class="card-subtitle">{{ monitor.phoneNumber }}</h6>
+        </div>
+      </div>
     </div>
   </div>
 </div>

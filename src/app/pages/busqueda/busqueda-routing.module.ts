@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BusquedaComponent } from './busqueda.component';
-import { GridMonitoresComponent } from './grid-monitores/grid-monitores.component';
+import { DetallesMonitorComponent } from './detalles-monitor/detalles-monitor.component';
 
 const routes: Routes = [
   {
     path: '',
     component: BusquedaComponent
+  },
+  {
+    path: 'monitor/:id',
+    component: DetallesMonitorComponent
   }
 ];
 

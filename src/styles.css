@@ -2,3 +2,7 @@
 .main-content {
   margin-top: 15vh;
 }
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+}

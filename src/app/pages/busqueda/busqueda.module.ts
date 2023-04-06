@@ -5,12 +5,14 @@ import { BusquedaRoutingModule } from './busqueda-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BusquedaComponent } from './busqueda.component';
 import { GridMonitoresComponent } from './grid-monitores/grid-monitores.component';
+import { DetallesMonitorComponent } from './detalles-monitor/detalles-monitor.component';
 
 
 @NgModule({
   declarations: [
     BusquedaComponent,
-    GridMonitoresComponent
+    GridMonitoresComponent,
+    DetallesMonitorComponent
   ],
   imports: [
     CommonModule,

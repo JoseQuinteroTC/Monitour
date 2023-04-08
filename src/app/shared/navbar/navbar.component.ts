@@ -8,7 +8,3 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
 
 }
-
-import { Router } from '@angular/router';
-
-

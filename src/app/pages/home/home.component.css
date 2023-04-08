@@ -22,3 +22,7 @@
 .showcase {
   background-color: #e1f0ff;
 }
+
+.card {
+  border-radius: .7rem;
+}

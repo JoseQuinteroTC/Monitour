@@ -1,3 +1,7 @@
 a {
   text-decoration: none;
 }
+
+a:hover {
+  border-bottom: 2px solid #4f96ff;
+}

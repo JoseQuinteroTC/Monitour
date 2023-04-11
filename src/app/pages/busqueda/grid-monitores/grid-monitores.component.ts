@@ -17,45 +17,47 @@ export class GridMonitoresComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this.monitoresService.getMonitores().subscribe(
-      (monitores: any) => {
-        console.log(monitores);
-        this.monitor = monitores[0];
-        const blob = new Blob([this.monitor.img_profile], { type: 'image/jpg' });
-        this.imagenMonitor = URL.createObjectURL(blob);
-      }
-    )
+    // this.monitoresService.getMonitores().subscribe(
+    //   (monitores: any) => {
+    //     console.log(monitores);
+    //     this.monitor = monitores[0];
+    //     const blob = new Blob([this.monitor.img_profile], { type: 'image/jpg' });
+    //     this.imagenMonitor = URL.createObjectURL(blob);
+    //   }
+    // )
   }
 
   monitores: any[] = [
     {
       nombre: "Pepito perez",
       id: 1,
-      foto: "https://i.redd.it/v0caqchbtn741.jpg",
+      foto: "assets/img/stockMonitor.jpg",
       materia: "Ecuaciones diferenciales",
-      descripcion: "Como deud es cule bruto yo les enseño calculo",
+      descripcion: "Descripcion sobre el monitor",
+      estudiantes: 35
+    },
+    {
+      nombre: "Pepito perez",
+      id: 2,
+      foto: "assets/img/stockMonitor.jpg",
+      materia: "Ecuaciones diferenciales",
+      descripcion: "Descripcion sobre el monitor",
       estudiantes: 35
     },
     {
       nombre: "Pepito perez",
       id: 3,
-      foto: "https://i.redd.it/v0caqchbtn741.jpg",
+      foto: "assets/img/stockMonitor.jpg",
       materia: "Ecuaciones diferenciales",
-      descripcion: "Como deud es cule bruto yo les enseño calculo",
+      descripcion: "Descripcion sobre el monitor",
       estudiantes: 35
     },
     {
       nombre: "Pepito perez",
-      foto: "https://i.redd.it/v0caqchbtn741.jpg",
+      id: 4,
+      foto: "assets/img/stockMonitor.jpg",
       materia: "Ecuaciones diferenciales",
-      descripcion: "Como deud es cule bruto yo les enseño calculo",
-      estudiantes: 35
-    },
-    {
-      nombre: "Pepito perez",
-      foto: "https://i.redd.it/v0caqchbtn741.jpg",
-      materia: "Ecuaciones diferenciales",
-      descripcion: "Como deud es cule bruto yo les enseño calculo",
+      descripcion: "Descripcion sobre el monitor",
       estudiantes: 35
     }
   ]

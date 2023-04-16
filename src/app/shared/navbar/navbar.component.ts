@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioModel } from 'src/app/models/usuario.model';
+
 import { AdminObservableService } from 'src/app/services/observables/admin.observable.service';
+import { UsuarioModel } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
 
-  logged:boolean = false;
+  logged: boolean = false;
   usuario: UsuarioModel | undefined;
 
   constructor(

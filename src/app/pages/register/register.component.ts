@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -33,7 +34,7 @@ export class RegisterComponent implements OnInit{
     this.contraseñasIguales();
 
     console.log(this.registerForm.get('nombre')?.value)
-    if ( this.registerForm.valid){
+    if ( this.registerForm.valid) {
       let body = new FormData();
       body.append('name', this.registerForm.get('nombre')?.value);
       body.append('lastName', this.registerForm.get('apellidos')?.value);
@@ -41,7 +42,6 @@ export class RegisterComponent implements OnInit{
       body.append('password', this.registerForm.get('contraseña')?.value);
 
       console.log(body);
-
       this.authService.userRegister(body).subscribe(resp => console.log(resp));
     }
   }

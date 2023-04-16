@@ -8,8 +8,6 @@ import { AdminObservableService } from './services/observables/admin.observable.
 })
 export class AppComponent {
 
-  constructor(
-    private adminObservables: AdminObservableService
-  ) { }
+  title = "Monitour";
 
 }

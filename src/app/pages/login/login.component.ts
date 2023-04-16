@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioModel } from 'src/app/models/usuario.model';
-import { AuthService } from 'src/app/services/auth.service';
+
 import { AdminObservableService } from 'src/app/services/observables/admin.observable.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UsuarioModel } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-login',
@@ -29,16 +30,18 @@ export class LoginComponent {
     if(!this.correoUsuario || !this.claveUsuario){
       return;
     }
-    this.loading = true;
 
-    let body = new FormData();
+    this.loading = true;
+    const body = new FormData();
     body.append('email', this.correoUsuario);
     body.append('password', this.claveUsuario);
+
     this.authService.userLogin(body).subscribe(
       (resp: any) => {
         console.log(resp);
         this.loading = false;
-        const token = resp.access_token
+        const token = resp.access_token;
+
         if(token){
           sessionStorage.setItem('token', token);
           const user = resp.user;
@@ -58,6 +61,6 @@ export class LoginComponent {
       console.log(error);
     }
     console.log(body);
-    console.log(this.correoUsuario, this.claveUsuario)
+    console.log(this.correoUsuario, this.claveUsuario);
   }
 }

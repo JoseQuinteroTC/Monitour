@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BusquedaRoutingModule } from './busqueda-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { BusquedaComponent } from './busqueda.component';
-import { GridMonitoresComponent } from './grid-monitores/grid-monitores.component';
+import { BusquedaRoutingModule } from './busqueda-routing.module';
 import { DetallesMonitorComponent } from './detalles-monitor/detalles-monitor.component';
+import { GridMonitoresComponent } from './grid-monitores/grid-monitores.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   declarations: [
     BusquedaComponent,
-    GridMonitoresComponent,
-    DetallesMonitorComponent
+    DetallesMonitorComponent,
+    GridMonitoresComponent
   ],
   imports: [
-    CommonModule,
     BusquedaRoutingModule,
+    CommonModule,
     SharedModule
   ]
 })

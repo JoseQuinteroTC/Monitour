@@ -1,22 +1,11 @@
 import { NgModule } from '@angular/core';
+
 import { RouterModule, Routes } from '@angular/router';
-import { BusquedaComponent } from './pages/busqueda/busqueda.component';
-import { HomeComponent } from './pages/home/home.component';
-import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('src/app/pages/home/home.module').then(
-            (m) => m.HomeModule
-          ),
-      },
-    ],
+    loadChildren: () => import('src/app/pages/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'login',
@@ -32,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: ''
   }
 
 ];

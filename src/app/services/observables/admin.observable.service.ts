@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { UsuarioModel } from 'src/app/models/usuario.model';
 
 @Injectable({

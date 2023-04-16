@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MonitoresService } from 'src/app/services/monitores.service';
 
+import { MonitoresService } from 'src/app/services/monitores.service';
 
 @Component({
   selector: 'app-grid-monitores',
   templateUrl: './grid-monitores.component.html',
   styleUrls: ['./grid-monitores.component.css']
 })
-export class GridMonitoresComponent implements OnInit{
+export class GridMonitoresComponent implements OnInit {
 
   monitor: any;
   imagenMonitor: any;

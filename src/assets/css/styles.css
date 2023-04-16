@@ -12,3 +12,13 @@
   background-color: #2972df !important;
   border-color: #2972df !important;
 }
+
+.dropdown-item:hover{
+  background-color: #f1f9ff;
+}
+
+.dropdown-item:active {
+  background-color: #54aafe;
+}
+
+

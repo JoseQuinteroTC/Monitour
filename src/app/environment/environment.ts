@@ -1,5 +1,5 @@
 export const environment = {
-  API_URL: 'http://localhost:8000/api/',
+  API_URL: 'https://monitour.000webhostapp.com/api/',
   methods: {
     login: 'login',
     register: 'register',

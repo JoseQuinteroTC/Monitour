@@ -11,7 +11,8 @@ import { AdminObservableService } from 'src/app/services/observables/admin.obser
 })
 export class UsuarioComponent implements OnInit {
 
-  usuario: UsuarioModel | undefined;
+  usuario: UsuarioModel;
+  eliminarCuenta: boolean = false;
 
   usuarioForm: FormGroup = this.fb.group({
     nombre: ['', Validators.required],
@@ -21,21 +22,20 @@ export class UsuarioComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private adminObservables: AdminObservableService,
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.usuario = this.adminObservables.getCurrentUser();
-    console.log('init')
-    this.setDatosUsuario();
+    this.authService.getUserByToken().subscribe(
+      (resp) => {
+        this.usuario = resp[0];
+        this.setDatosUsuario();
+      }
+    )
   }
-
-  eliminarCuenta: boolean = false;
 
   setDatosUsuario() {
     if(!this.usuario){
-      console.log(this.usuario)
       return;
     }
     this.usuarioForm.controls['nombre'].setValue(this.usuario.name);
@@ -49,9 +49,9 @@ export class UsuarioComponent implements OnInit {
     }
     const body: UsuarioModel = {
       id: this.usuario.id,
-      name: this.usuarioForm.controls['apellido'].value,
+      name: this.usuarioForm.controls['nombre'].value,
       lastName: this.usuarioForm.controls['apellido'].value,
-      email: this.usuarioForm.controls['apellido'].value
+      email: this.usuarioForm.controls['email'].value
     }
     this.authService.updateUser(body).subscribe(
       (resp) => {

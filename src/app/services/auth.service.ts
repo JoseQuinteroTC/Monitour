@@ -42,16 +42,16 @@ export class AuthService {
   }
 
   setToken(token: string) {
-    sessionStorage.setItem('token', token);
+    localStorage.setItem('token', token);
   }
 
   deleteToken() {
     if(this.getToken()){
-      sessionStorage.removeItem('token');
+      localStorage.removeItem('token');
     }
   }
 
   getToken() {
-    return sessionStorage.getItem('token');
+    return localStorage.getItem('token');
   }
 }

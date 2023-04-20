@@ -16,15 +16,8 @@ export class AppComponent {
   ) {
     this.authService.getUserByToken().subscribe(
       (resp) => {
-        console.log(resp);
         const user = resp[0];
-          const body: UsuarioModel = {
-            id: user.id,
-            name: user.name,
-            lastName: user.lastName,
-            email: user.email
-          };
-          this.adminObservables.setCurrentUser(body);
+          this.adminObservables.setCurrentUser(user);
       }
     )
   }

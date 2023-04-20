@@ -44,15 +44,9 @@ export class LoginComponent {
         const token = resp.access_token;
 
         if(token){
-          sessionStorage.setItem('token', token);
+          localStorage.setItem('token', token);
           const user = resp.user;
-          const body: UsuarioModel = {
-            id: user.id,
-            name: user.name,
-            lastName: user.lastName,
-            email: user.email
-          };
-          this.adminObservables.setCurrentUser(body);
+          this.adminObservables.setCurrentUser(user);
           this.router.navigate(['']);
         }
       },

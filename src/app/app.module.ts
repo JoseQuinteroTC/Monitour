@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import 'bootstrap';
 import 'popper.js';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,10 @@ import 'popper.js';
     SharedModule,
     HttpClientModule
   ],
-  providers: [HttpClient],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

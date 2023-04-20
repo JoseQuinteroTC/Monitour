@@ -15,7 +15,7 @@ export class AdminObservableService {
   };
 
   isLoggedIn() {
-    return sessionStorage.getItem('token') != undefined;
+    return localStorage.getItem('token') != undefined;
   }
 
   setCurrentUser(user: UsuarioModel) {

@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+  <div class="main-content">
+    <div class="container">
+      <div class="row px-5">
+        <ul class="nav nav-underline">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" >Mi cuenta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Mensajes</a>
+          </li>
+        </ul>
+      </div>
+      <div class="row gap-5 p-4">
+        <aside class="col-4 card p-4 shadow">
+          <h3 class="mb-4">Informacion general</h3>
+          <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" formControlName="nombre">
+            </div>
+            <div class="mb-3">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="apellido" formControlName="apellido">
+            </div>
+            <div class="mb-3">
+              <label for="correo" class="form-label">Correo electronico</label>
+              <input type="email" class="form-control" id="correo" formControlName="email">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+        </aside>
+        <section class="col-6 card p-4 shadow">
+          <div class="p-4">
+            <h4 class="mb-3">Cambiar contraseña</h4>
+            <form>
+              <div class="mb-3">
+                <label for="anteriorClave" class="form-label">Contraseña actual</label>
+                <input type="text" class="form-control" id="anteriorClave">
+              </div>
+              <div class="mb-3">
+                <label for="clave" class="form-label">Nueva Contraseña</label>
+                <input type="text" class="form-control" id="clave">
+              </div>
+              <div class="mb-3">
+                <label for="confirmClave" class="form-label">Confirmar contraseña</label>
+                <input type="text" class="form-control" id="confirmClave">
+              </div>
+              <button type="submit" class="btn btn-primary">Cambiar</button>
+            </form>
+          </div>
+          <div class="p-4">
+            <h4 class="mb-3">Eliminar cuenta</h4>
+            <p>
+              ¡CUIDADO! Todos tus datos serán eliminados definitivamente y de manera irreversible.
+              ¿Estas seguro que deseas continuar?
+            </p>
+            <div class="form-check custom-check" style="background-color: #f7f7f7" [ngClass]="{'delete-account': eliminarCuenta}">
+              <input class="form-check-input" type="checkbox" name="eliminarCuenta" id="eliminarCuenta" [(ngModel)]="eliminarCuenta">
+              <label class="form-check-label w-100" for="eliminarCuenta">
+                Eliminar mi cuenta
+              </label>
+            </div>
+            <button type="button" class="btn btn-primary mt-3" [disabled]="!eliminarCuenta">
+              Aceptar
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>

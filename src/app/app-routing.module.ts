@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('src/app/pages/busqueda/busqueda.module').then((m)=> m.BusquedaModule)
   },
   {
+    path: 'mi-cuenta',
+    loadChildren: () => import('src/app/pages/usuario/usuario.module').then((m)=> m.UsuarioModule)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

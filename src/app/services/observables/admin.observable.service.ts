@@ -9,9 +9,9 @@ export class AdminObservableService {
 
   private user: UsuarioModel = {
     id: 0,
-    nombre: '',
-    apellido: '',
-    correo: ''
+    name: '',
+    lastName: '',
+    email: ''
   };
 
   isLoggedIn() {

@@ -27,6 +27,7 @@ export class LoginComponent {
 
   login() {
     this.submitted = true;
+    this.invalidUser = false;
     if(!this.correoUsuario || !this.claveUsuario){
       return;
     }
@@ -47,19 +48,20 @@ export class LoginComponent {
           const user = resp.user;
           const body: UsuarioModel = {
             id: user.id,
-            nombre: user.name,
-            apellido: user.lastName,
-            correo: user.email
+            name: user.name,
+            lastName: user.lastName,
+            email: user.email
           };
           this.adminObservables.setCurrentUser(body);
           this.router.navigate(['']);
         }
+      },
+      (error) => {
+        this.loading = false;
+        this.invalidUser = true;
+        console.log(error);
       }
-    ),
-    (error: any) => {
-      this.invalidUser = true;
-      console.log(error);
-    }
+    )
     console.log(body);
     console.log(this.correoUsuario, this.claveUsuario);
   }

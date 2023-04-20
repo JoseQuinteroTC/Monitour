@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UsuarioModel } from 'src/app/models/usuario.model';
 
 import { AuthService } from 'src/app/services/auth.service';
+import { AdminObservableService } from 'src/app/services/observables/admin.observable.service';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +14,10 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterComponent implements OnInit{
 
   constructor(
+    private authService: AuthService,
+    private adminObservables: AdminObservableService,
     private fb: FormBuilder,
-    private authService: AuthService
+    private router: Router
   ){ }
 
   submitted: boolean = false;
@@ -42,7 +47,27 @@ export class RegisterComponent implements OnInit{
       body.append('password', this.registerForm.get('contraseña')?.value);
 
       console.log(body);
-      this.authService.userRegister(body).subscribe(resp => console.log(resp));
+      this.authService.userRegister(body).subscribe(
+        (resp: any) => {
+          console.log(resp);
+          const token = resp.access_token;
+          if (token) {
+            this.authService.setToken(token);
+            const user = resp.data;
+            const body: UsuarioModel = {
+            id: user.id,
+            name: user.name,
+            lastName: user.lastName,
+            email: user.email
+          };
+            this.adminObservables.setCurrentUser(body);
+            this.router.navigate(['']);
+          }
+        }
+      ),
+      (error: any) => {
+        console.log(error);
+      }
     }
   }
 

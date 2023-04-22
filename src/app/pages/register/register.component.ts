@@ -53,9 +53,7 @@ export class RegisterComponent implements OnInit{
           const token = resp.access_token;
           if (token) {
             this.authService.setToken(token);
-            const user = resp.data;
-            this.adminObservables.setCurrentUser(user);
-            this.router.navigate(['']);
+            this.router.navigate(['login']);
           }
         }
       ),

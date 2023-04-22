@@ -5,6 +5,8 @@ export const environment = {
     register: 'register',
     monitores: 'monitores',
     userToken: 'userToken/',
-    updateUser: 'updateData'
+    updateUser: 'updateData',
+    updatePassword: 'updatePassword',
+    deleteUser: 'deleteUser/'
   }
 }

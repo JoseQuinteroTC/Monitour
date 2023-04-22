@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { AdminObservableService } from 'src/app/services/observables/admin.observable.service';
 
 @Component({
   selector: 'app-usuario',
@@ -20,14 +20,22 @@ export class UsuarioComponent implements OnInit {
     email: ['', Validators.required]
   });
 
+  claveForm: FormGroup = this.fb.group({
+    clave: ['', Validators.required],
+    claveNueva: ['', Validators.required],
+    confirmClave: ['', Validators.required]
+  });
+
   constructor(
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.authService.getUserByToken().subscribe(
       (resp) => {
+        console.log(resp);
         this.usuario = resp[0];
         this.setDatosUsuario();
       }
@@ -47,16 +55,55 @@ export class UsuarioComponent implements OnInit {
     if (!this.usuario?.id) {
       return
     }
-    const body: UsuarioModel = {
-      id: this.usuario.id,
-      name: this.usuarioForm.controls['nombre'].value,
-      lastName: this.usuarioForm.controls['apellido'].value,
-      email: this.usuarioForm.controls['email'].value
+    let form: FormData = new FormData();
+    form.append('id', this.usuario.id.toString());
+    form.append('name', this.usuarioForm.get('nombre')?.value);
+    form.append('lastName', this.usuarioForm.get('apellido')?.value);
+    form.append('email', this.usuarioForm.get('email')?.value);
+    this.authService.updateUser(form).subscribe(
+      (resp) => {
+        window.location.reload();
+        console.log(resp);
+      }
+    )
+  }
+
+  cambiarClave() {
+    this.contraseñasIguales();
+
+    if (this.claveForm.invalid) {
+      return;
     }
-    this.authService.updateUser(body).subscribe(
+
+    let form: FormData = new FormData();
+    form.append('id', this.usuario.id.toString());
+    form.append('password', this.claveForm.get('clave')?.value);
+    form.append('newPassword', this.claveForm.get('claveNueva')?.value);
+
+    this.authService.changePassword(form).subscribe(
+      (resp) => {
+        this.claveForm.get('clave')?.setValue('');
+        this.claveForm.get('claveNueva')?.setValue('');
+        this.claveForm.get('confirmClave')?.setValue('');
+      }
+    )
+  }
+
+  contraseñasIguales() {
+    const password = this.claveForm.get('claveNueva')?.value;
+    const confirmPassword = this.claveForm.get('confirmClave')?.value;
+    if (password !== confirmPassword) {
+      this.claveForm.get('confirmClave')?.setErrors({ notSame: true });
+    }
+  }
+
+  eliminarUsuario() {
+    this.authService.deleteUser(this.usuario.id).subscribe(
       (resp) => {
         console.log(resp);
       }
     )
+    this.authService.deleteToken();
+    this.router.navigate(['']);
   }
 }

@@ -19,7 +19,7 @@ export class AuthService {
     )
   }
 
-  updateUser(body: any) {
+  updateUser(body: FormData) {
     return this.http.post(
       environment.API_URL + environment.methods.updateUser,
       body
@@ -35,6 +35,7 @@ export class AuthService {
 
   getUserByToken() {
     const token = this.getToken();
+    console.log(token);
     return this.http.get(
       environment.API_URL + environment.methods.userToken
       + token
@@ -53,5 +54,20 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  changePassword(body: FormData) {
+    return this.http.post(
+      environment.API_URL + environment.methods.updatePassword,
+      body
+    )
+  }
+
+  deleteUser(id: number) {
+    return this.http.post(
+      environment.API_URL + environment.methods.deleteUser
+      + id,
+      {}
+    )
   }
 }

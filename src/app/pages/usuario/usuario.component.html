@@ -27,16 +27,23 @@
               <label for="correo" class="form-label">Correo electronico</label>
               <input type="email" class="form-control" id="correo" formControlName="email">
             </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button *ngIf="!cambiandoInfo" type="submit" class="btn btn-primary">Guardar</button>
+            <button *ngIf="cambiandoInfo" class="btn btn-primary" type="button" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Guardando...
+            </button>
           </form>
         </aside>
         <section class="col-6 card p-4 shadow">
           <div class="p-4">
             <h4 class="mb-3">Cambiar contraseña</h4>
-            <form [formGroup]="claveForm" (ngSubmit)="cambiarClave()">
+            <form [formGroup]="claveForm" #formClave="ngForm" (ngSubmit)="cambiarClave()">
               <div class="mb-3">
                 <label for="anteriorClave" class="form-label">Contraseña actual</label>
                 <input type="text" class="form-control" id="clave" formControlName="clave">
+                <div *ngIf="claveForm.controls['clave'].errors?.['invalidClave']" class="invalid-text">
+                  La contraseña ingresada no coincide
+                </div>
               </div>
               <div class="mb-3">
                 <label for="clave" class="form-label">Nueva Contraseña</label>
@@ -47,6 +54,9 @@
                   formControlName="claveNueva"
                   minlength="8"
                 >
+                <div *ngIf="claveForm.controls['claveNueva'].errors?.['minlength'] && formClave.submitted" class="invalid-text">
+                  La contraseña debe tener más de 8 caracteres
+                </div>
               </div>
               <div class="mb-3">
                 <label for="confirmClave" class="form-label">Confirmar contraseña</label>
@@ -56,8 +66,20 @@
                   id="confirmClave"
                   formControlName="confirmClave"
                 >
+                <div *ngIf="claveForm.controls['confirmClave'].errors?.['notSame']" class="invalid-text">
+                  Las contraseñas deben ser iguales
+                </div>
               </div>
-              <button type="submit" class="btn btn-primary">Cambiar</button>
+              <div class="mb-3">
+                <div *ngIf="claveModificada" class="success-message">
+                  La contraseña ha sido modificada!
+                </div>
+              </div>
+              <button *ngIf="!cambiandoClave" type="submit" class="btn btn-primary">Cambiar</button>
+              <button *ngIf="cambiandoClave" class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Guardando...
+              </button>
             </form>
           </div>
           <div class="p-4">
@@ -73,12 +95,17 @@
               </label>
             </div>
             <button
+            *ngIf="!eliminando"
               type="button"
               class="btn btn-primary mt-3"
               [disabled]="!eliminarCuenta"
               (click)="eliminarUsuario()"
             >
               Aceptar
+            </button>
+            <button *ngIf="eliminando" class="btn btn-primary" type="button" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Eliminando...
             </button>
           </div>
         </section>

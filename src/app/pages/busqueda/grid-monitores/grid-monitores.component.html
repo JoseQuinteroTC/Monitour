@@ -18,6 +18,15 @@
           </div>
         </div>
       </div>
+      <div class="card card-clickable rounded-5">
+        <img [src]="monitor?.url_img_profile" class="card-img-top rounded-top-5 ">
+        <div class="card-body">
+          <h3 class="card-title">nombre epico</h3>
+          <h6 class="card-subtitle">materia epica</h6>
+          <p class="card-text">{{ monitor?.description }}</p>
+          <a [routerLink]="['./monitor/',monitor?.id]" class="stretched-link"></a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

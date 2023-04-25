@@ -14,16 +14,15 @@
             </div>
             <div class="col-md-6 col-lg-6 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
+                <div class="d-flex align-items-center mb-3 pb-1">
+                  <img
+                    src="../../../assets/MoniTour-logo/vector/default-monochrome.svg"
+                    alt="login form"
+                    class="img-fluid"
+                    style="border-radius: 1rem 0 0 1rem"
+                  />
+                </div>
                 <form>
-                  <div class="d-flex align-items-center mb-3 pb-1">
-                    <img
-                      src="../../../assets/MoniTour-logo/vector/default-monochrome.svg"
-                      alt="login form"
-                      class="img-fluid"
-                      style="border-radius: 1rem 0 0 1rem"
-                    />
-                  </div>
-
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
                     Ingresa en tu cuenta
                   </h5>
@@ -37,6 +36,7 @@
                       id="correo"
                       name="correoUsuario"
                       class="form-control form-control-lg"
+                      (keyup.enter)="login()"
                       [(ngModel)]="correoUsuario"
                       [ngClass]="{invalid: submitted && !correoUsuario}"
                     />
@@ -50,6 +50,7 @@
                     <input
                       type="password"
                       id="contraseña"
+                      (keyup.enter)="login()"
                       name="claveUsuario"
                       class="form-control form-control-lg"
                       [(ngModel)]="claveUsuario"

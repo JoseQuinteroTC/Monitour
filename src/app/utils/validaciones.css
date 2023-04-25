@@ -6,3 +6,13 @@
   color: red;
   font-size: .9rem;
 }
+
+.success-message {
+  display: inline-block;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  background-color: #f4f4f4;
+  border-left: 1rem solid #4aa54b;
+  font-weight: bold;
+  color: #4aa54b;
+}

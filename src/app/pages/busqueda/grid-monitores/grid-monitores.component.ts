@@ -17,14 +17,12 @@ export class GridMonitoresComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    // this.monitoresService.getMonitores().subscribe(
-    //   (monitores: any) => {
-    //     console.log(monitores);
-    //     this.monitor = monitores[0];
-    //     const blob = new Blob([this.monitor.img_profile], { type: 'image/jpg' });
-    //     this.imagenMonitor = URL.createObjectURL(blob);
-    //   }
-    // )
+    this.monitoresService.getMonitores().subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.monitor = resp[0];
+      }
+    )
   }
 
   monitores: any[] = [

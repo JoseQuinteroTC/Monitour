@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 import { AdminObservableService } from 'src/app/services/observables/admin.observable.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { UsuarioModel } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +12,13 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 export class LoginComponent {
 
   constructor(
-    private authService: AuthService,
     private adminObservables: AdminObservableService,
+    private authService: AuthService,
     private router: Router
   ){}
 
-  correoUsuario: string = '';
-  claveUsuario: string = '';
+  userEmail: string = '';
+  userPassword: string = '';
 
   submitted: boolean = false;
   loading: boolean = false;
@@ -28,35 +27,32 @@ export class LoginComponent {
   login() {
     this.submitted = true;
     this.invalidUser = false;
-    if(!this.correoUsuario || !this.claveUsuario){
+    if(!this.userEmail || !this.userPassword){
       return;
     }
 
     this.loading = true;
-    const body = new FormData();
-    body.append('email', this.correoUsuario);
-    body.append('password', this.claveUsuario);
+    const form = new FormData();
+    form.append('email', this.userEmail);
+    form.append('password', this.userPassword);
 
-    this.authService.userLogin(body).subscribe(
-      (resp: any) => {
+    this.authService.userLogin(form).subscribe({
+      next: (resp: any) => {
         console.log(resp);
         this.loading = false;
         const token = resp.access_token;
-
-        if(token){
+        if (token) {
           localStorage.setItem('token', token);
           const user = resp.user;
           this.adminObservables.setCurrentUser(user);
           this.router.navigate(['']);
         }
       },
-      (error) => {
+      error: (error) => {
         this.loading = false;
         this.invalidUser = true;
         console.log(error);
       }
-    )
-    console.log(body);
-    console.log(this.correoUsuario, this.claveUsuario);
+    });
   }
 }

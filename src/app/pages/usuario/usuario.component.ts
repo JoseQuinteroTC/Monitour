@@ -22,11 +22,12 @@ export class UsuarioComponent implements OnInit {
 
   //Message booleans
   claveModificada: boolean = false;
+  usuarioModificado: boolean = false;
 
   usuarioForm: FormGroup = this.fb.group({
     nombre: ['', Validators.required],
     apellido: ['', Validators.required],
-    email: ['', Validators.required]
+    email: ['', [Validators.required, Validators.email]]
   });
 
   claveForm: FormGroup = this.fb.group({
@@ -61,8 +62,9 @@ export class UsuarioComponent implements OnInit {
   }
 
   guardarUsuario() {
-    if (!this.usuario?.id) {
-      return
+    console.log(this.usuarioForm.controls['email'])
+    if (!this.usuario?.id || this.usuarioForm.invalid) {
+      return;
     }
     this.cambiandoInfo = true;
     let form: FormData = new FormData();
@@ -73,7 +75,11 @@ export class UsuarioComponent implements OnInit {
     firstValueFrom(this.authService.updateUser(form)).then(
     () => {
       this.cambiandoInfo = false;
-      window.location.reload();
+      this.usuarioModificado = true;
+      setTimeout(() => {
+        this.usuarioModificado = false;
+        window.location.reload();
+      }, 2000);
     }).catch(
       (e) => console.log(e)
     );
@@ -100,7 +106,7 @@ export class UsuarioComponent implements OnInit {
         this.claveModificada = true;
         setTimeout(() => {
           this.claveModificada = false;
-        }, 1000);
+        }, 2000);
       },
       error: (e) => {
         console.log(e);

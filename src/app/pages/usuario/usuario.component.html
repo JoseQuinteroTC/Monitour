@@ -14,7 +14,7 @@
       <div class="row gap-5 p-4">
         <aside class="col-4 card p-4 shadow">
           <h3 class="mb-4">Informacion general</h3>
-          <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
+          <form [formGroup]="usuarioForm" #userForm="ngForm" (ngSubmit)="guardarUsuario()">
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
               <input type="text" class="form-control" id="nombre" formControlName="nombre">
@@ -25,7 +25,15 @@
             </div>
             <div class="mb-3">
               <label for="correo" class="form-label">Correo electronico</label>
-              <input type="email" class="form-control" id="correo" formControlName="email">
+              <input type="text" class="form-control" id="correo" formControlName="email">
+              <div *ngIf="usuarioForm.controls['email']?.errors?.['email'] && userForm.submitted" class="invalid-text">
+                El correo ingresado es invalido
+              </div>
+            </div>
+            <div class="mb-3">
+              <div *ngIf="usuarioModificado" class="success-message">
+                Los datos del usuario han sido modificados!
+              </div>
             </div>
             <button *ngIf="!cambiandoInfo" type="submit" class="btn btn-primary">Guardar</button>
             <button *ngIf="cambiandoInfo" class="btn btn-primary" type="button" disabled>

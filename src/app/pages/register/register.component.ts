@@ -15,7 +15,6 @@ export class RegisterComponent implements OnInit{
 
   constructor(
     private authService: AuthService,
-    private adminObservables: AdminObservableService,
     private fb: FormBuilder,
     private router: Router
   ){ }
@@ -38,7 +37,6 @@ export class RegisterComponent implements OnInit{
     this.registerForm.markAllAsTouched();
     this.contraseñasIguales();
 
-    console.log(this.registerForm.get('nombre')?.value)
     if ( this.registerForm.valid) {
       let body = new FormData();
       body.append('name', this.registerForm.get('nombre')?.value);
@@ -46,20 +44,20 @@ export class RegisterComponent implements OnInit{
       body.append('email', this.registerForm.get('correo')?.value);
       body.append('password', this.registerForm.get('contraseña')?.value);
 
-      console.log(body);
-      this.authService.userRegister(body).subscribe(
-        (resp: any) => {
+      this.authService.userRegister(body).subscribe({
+        next: (resp: any) => {
           console.log(resp);
           const token = resp.access_token;
           if (token) {
             this.authService.setToken(token);
             this.router.navigate(['login']);
           }
+        },
+        error: (e) => {
+          this.registerForm.controls['correo']?.setErrors({emailTaken: true});
+          console.log(e);
         }
-      ),
-      (error: any) => {
-        console.log(error);
-      }
+      });
     }
   }
 

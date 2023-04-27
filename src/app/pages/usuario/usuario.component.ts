@@ -81,7 +81,11 @@ export class UsuarioComponent implements OnInit {
         window.location.reload();
       }, 2000);
     }).catch(
-      (e) => console.log(e)
+      (e) => {
+        console.log(e);
+        this.usuarioForm.controls['email']?.setErrors({emailTaken: true});
+        this.cambiandoInfo = false;
+      }
     );
   }
 

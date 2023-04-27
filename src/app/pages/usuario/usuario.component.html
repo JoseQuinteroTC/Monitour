@@ -29,6 +29,9 @@
               <div *ngIf="usuarioForm.controls['email']?.errors?.['email'] && userForm.submitted" class="invalid-text">
                 El correo ingresado es invalido
               </div>
+              <div *ngIf="usuarioForm.controls['email']?.errors?.['emailTaken']" class="invalid-text">
+                Ya existe un usuario con el correo ingresado
+              </div>
             </div>
             <div class="mb-3">
               <div *ngIf="usuarioModificado" class="success-message">

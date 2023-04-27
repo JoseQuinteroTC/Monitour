@@ -76,6 +76,7 @@
                     <div *ngIf="validarCampo('correo')">
                       <div *ngIf="registerForm.get('correo')?.errors?.['required']" class="invalid-text">Campo requerido</div>
                       <div *ngIf="registerForm.get('correo')?.errors?.['email']" class="invalid-text">Correo invalido</div>
+                      <div *ngIf="registerForm.get('correo')?.errors?.['emailTaken']" class="invalid-text">Ya existe un usuario con el correo ingresado</div>
                     </div>
                   </div>
 

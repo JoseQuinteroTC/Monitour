@@ -12,28 +12,28 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UsuarioComponent implements OnInit {
 
-  usuario: UsuarioModel;
-  eliminarCuenta: boolean = false;
+  user: UsuarioModel;
+  deleteCheck: boolean = false;
 
   // Loaders
-  cambiandoClave: boolean = false;
-  cambiandoInfo: boolean = false;
-  eliminando: boolean = false;
+  changingPassword: boolean = false;
+  updatingUser: boolean = false;
+  deleting: boolean = false;
 
   //Message booleans
-  claveModificada: boolean = false;
-  usuarioModificado: boolean = false;
+  passwordChanged: boolean = false;
+  userUpdated: boolean = false;
 
-  usuarioForm: FormGroup = this.fb.group({
-    nombre: ['', Validators.required],
-    apellido: ['', Validators.required],
+  userFormGroup: FormGroup = this.fb.group({
+    name: ['', Validators.required],
+    lastName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]]
   });
 
-  claveForm: FormGroup = this.fb.group({
-    clave: ['', Validators.required],
-    claveNueva: ['', Validators.required],
-    confirmClave: ['', Validators.required]
+  passwordFormGroup: FormGroup = this.fb.group({
+    password: ['', Validators.required],
+    newPassword: ['', Validators.required],
+    confirmPassword: ['', Validators.required]
   });
 
   constructor(
@@ -46,91 +46,88 @@ export class UsuarioComponent implements OnInit {
     this.authService.getUserByToken().subscribe(
       (resp) => {
         console.log(resp);
-        this.usuario = resp[0];
-        this.setDatosUsuario();
+        this.user = resp[0];
+        this.setUserData();
       }
     )
   }
 
-  setDatosUsuario() {
-    if(!this.usuario){
+  setUserData() {
+    if(!this.user){
       return;
     }
-    this.usuarioForm.controls['nombre'].setValue(this.usuario.name);
-    this.usuarioForm.controls['apellido'].setValue(this.usuario.lastName);
-    this.usuarioForm.controls['email'].setValue(this.usuario.email);
+    this.userFormGroup.controls['name'].setValue(this.user.name);
+    this.userFormGroup.controls['lastName'].setValue(this.user.lastName);
+    this.userFormGroup.controls['email'].setValue(this.user.email);
   }
 
-  guardarUsuario() {
-    console.log(this.usuarioForm.controls['email'])
-    if (!this.usuario?.id || this.usuarioForm.invalid) {
+  updateUser() {
+    if (!this.user?.id || this.userFormGroup.invalid) {
       return;
     }
-    this.cambiandoInfo = true;
+    this.updatingUser = true;
     let form: FormData = new FormData();
-    form.append('id', this.usuario.id.toString());
-    form.append('name', this.usuarioForm.get('nombre')?.value);
-    form.append('lastName', this.usuarioForm.get('apellido')?.value);
-    form.append('email', this.usuarioForm.get('email')?.value);
+    form.append('id', this.user.id.toString());
+    form.append('name', this.userFormGroup.get('name')?.value);
+    form.append('lastName', this.userFormGroup.get('lastName')?.value);
+    form.append('email', this.userFormGroup.get('email')?.value);
     firstValueFrom(this.authService.updateUser(form)).then(
     () => {
-      this.cambiandoInfo = false;
-      this.usuarioModificado = true;
+      this.updatingUser = false;
+      this.userUpdated = true;
       setTimeout(() => {
-        this.usuarioModificado = false;
+        this.userUpdated = false;
         window.location.reload();
       }, 2000);
     }).catch(
       (e) => {
         console.log(e);
-        this.usuarioForm.controls['email']?.setErrors({emailTaken: true});
-        this.cambiandoInfo = false;
+        this.userFormGroup.controls['email']?.setErrors({emailTaken: true});
+        this.updatingUser = false;
       }
     );
   }
 
-  cambiarClave() {
-    console.log(this.claveForm.controls['claveNueva'])
-    this.contraseñasIguales();
-
-    if (this.claveForm.invalid) {
+  changePassword() {
+    this.equalPasswords();
+    if (this.passwordFormGroup.invalid) {
       return;
     }
 
-    this.cambiandoClave = true;
-    let form: FormData = new FormData();
-    form.append('id', this.usuario.id.toString());
-    form.append('password', this.claveForm.get('clave')?.value);
-    form.append('newPassword', this.claveForm.get('claveNueva')?.value);
+    this.changingPassword = true;
+    const form: FormData = new FormData();
+    form.append('id', this.user.id.toString());
+    form.append('password', this.passwordFormGroup.get('password')?.value);
+    form.append('newPassword', this.passwordFormGroup.get('newPassword')?.value);
 
     this.authService.changePassword(form).subscribe({
       next: () => {
-        this.cambiandoClave = false;
-        this.claveForm.reset();
-        this.claveModificada = true;
+        this.changingPassword = false;
+        this.passwordFormGroup.reset();
+        this.passwordChanged = true;
         setTimeout(() => {
-          this.claveModificada = false;
+          this.passwordChanged = false;
         }, 2000);
       },
       error: (e) => {
         console.log(e);
-        this.cambiandoClave = false;
-        this.claveForm.controls['clave']?.setErrors({invalidClave: true});
+        this.changingPassword = false;
+        this.passwordFormGroup.controls['password']?.setErrors({invalidClave: true});
       }
     });
   }
 
-  contraseñasIguales() {
-    const password = this.claveForm.get('claveNueva')?.value;
-    const confirmPassword = this.claveForm.get('confirmClave')?.value;
+  equalPasswords() {
+    const password = this.passwordFormGroup.get('newPassword')?.value;
+    const confirmPassword = this.passwordFormGroup.get('confirmPassword')?.value;
     if (password !== confirmPassword) {
-      this.claveForm.get('confirmClave')?.setErrors({ notSame: true });
+      this.passwordFormGroup.get('confirmPassword')?.setErrors({ notEqual: true });
     }
   }
 
-  eliminarUsuario() {
-    this.eliminando = true;
-    firstValueFrom(this.authService.deleteUser(this.usuario.id)).then(
+  deleteUser() {
+    this.deleting = true;
+    firstValueFrom(this.authService.deleteUser(this.user.id)).then(
       (resp) => {
         console.log(resp);
         this.authService.deleteToken();

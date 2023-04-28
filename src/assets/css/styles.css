@@ -27,6 +27,11 @@ body {
   border-color: #2972df !important;
 }
 
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+  background-color: #61a1ff;
+  border-color: #61a1ff;
+}
+
 .dropdown-item:hover{
   background-color: #f1f9ff;
 }

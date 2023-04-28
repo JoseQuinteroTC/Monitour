@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuarioModel } from 'src/app/models/usuario.model';
 
 import { AuthService } from 'src/app/services/auth.service';
-import { AdminObservableService } from 'src/app/services/observables/admin.observable.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css', '../../utils/validaciones.css']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
@@ -20,57 +18,63 @@ export class RegisterComponent implements OnInit{
   ){ }
 
   submitted: boolean = false;
+  loading: boolean = false;
   registerForm: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      nombre: ['', Validators.required],
-      apellidos: ['', Validators.required],
-      correo: ['', Validators.required],
-      contraseña: ['', Validators.required],
-      confirmarContraseña: ['', Validators.required]
+      name: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     });
   }
 
-  registro() {
+  register() {
     this.submitted = true;
     this.registerForm.markAllAsTouched();
-    this.contraseñasIguales();
+    this.equalPasswords();
 
-    if ( this.registerForm.valid) {
-      let body = new FormData();
-      body.append('name', this.registerForm.get('nombre')?.value);
-      body.append('lastName', this.registerForm.get('apellidos')?.value);
-      body.append('email', this.registerForm.get('correo')?.value);
-      body.append('password', this.registerForm.get('contraseña')?.value);
-
-      this.authService.userRegister(body).subscribe({
-        next: (resp: any) => {
-          console.log(resp);
-          const token = resp.access_token;
-          if (token) {
-            this.authService.setToken(token);
-            this.router.navigate(['login']);
-          }
-        },
-        error: (e) => {
-          this.registerForm.controls['correo']?.setErrors({emailTaken: true});
-          console.log(e);
-        }
-      });
+    if (this.registerForm.invalid) {
+      return;
     }
+
+    this.loading = true;
+    let body = new FormData();
+    body.append('name', this.registerForm.get('name')?.value);
+    body.append('lastName', this.registerForm.get('lastName')?.value);
+    body.append('email', this.registerForm.get('email')?.value);
+    body.append('password', this.registerForm.get('password')?.value);
+
+    this.authService.userRegister(body).subscribe({
+      next: (resp: any) => {
+        this.loading = false;
+        console.log(resp);
+        const token = resp.access_token;
+        if (token) {
+          this.authService.setToken(token);
+          this.router.navigate(['login']);
+        }
+      },
+      error: (e) => {
+        this.loading = false;
+        this.registerForm.controls['correo']?.setErrors({emailTaken: true});
+        console.log(e);
+      }
+    });
   }
 
-  validarCampo(campo: string) {
-    return this.submitted && this.registerForm.get(campo)?.invalid
-    && (this.registerForm.get(campo)?.dirty || this.registerForm.get(campo)?.touched);
+  validateField(field: string) {
+    return this.submitted && this.registerForm.get(field)?.invalid
+    && (this.registerForm.get(field)?.dirty || this.registerForm.get(field)?.touched);
   }
 
-  contraseñasIguales() {
-    const password = this.registerForm.get('contraseña')?.value;
-    const confirmPassword = this.registerForm.get('confirmarContraseña')?.value;
+  equalPasswords() {
+    const password = this.registerForm.get('password')?.value;
+    const confirmPassword = this.registerForm.get('confirmPassword')?.value;
     if (password !== confirmPassword) {
-      this.registerForm.get('confirmarContraseña')?.setErrors({ notSame: true });
+      this.registerForm.get('confirmPassword')?.setErrors({ notEqual: true });
     }
   }
 }

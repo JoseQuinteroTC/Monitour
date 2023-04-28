@@ -1,8 +1,8 @@
-<section class="vh-100" style="background-color: #aed6fb">
+<section class="vh-100 auth-background">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
-        <div class="card" style="border-radius: 1rem">
+        <div class="card rounded-4">
           <div class="row g-0">
             <div class="col-md-6 col-6 d-none d-md-block">
               <img
@@ -14,20 +14,17 @@
             </div>
             <div class="col-md-6 col-12 d-flex align-items-center">
               <div class="card-body p-4 p-5 text-black">
-                <form [formGroup]="registerForm" (ngSubmit)="registro()">
+                <form [formGroup]="registerForm" (ngSubmit)="register()">
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <img
                       src="../../../assets/MoniTour-logo/vector/default-monochrome.svg"
                       alt="login form"
                       class="img-fluid"
-                      style="border-radius: 1rem 0 0 1rem"
                     />
                   </div>
-
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
                     Registra una nueva cuenta
                   </h5>
-
                   <div class="row form-outline mb-4 gap-3 gap-lg-0">
                     <div class="col-lg-6">
                       <label class="form-label" for="nombre">
@@ -35,96 +32,122 @@
                       </label>
                       <input
                         type="text"
-                        id="nombre"
-                        formControlName="nombre"
+                        id="name"
+                        formControlName="name"
                         class="form-control"
-                        [ngClass]="{invalid: validarCampo('nombre')}"
+                        [ngClass]="{invalid: validateField('name')}"
                       />
-                      <div *ngIf="validarCampo('nombre')">
-                        <div *ngIf="registerForm.get('nombre')?.errors?.['required']" class="invalid-text">Campo requerido</div>
+                      <div *ngIf="validateField('name')">
+                        <div *ngIf="registerForm.controls['name']?.errors?.['required']" class="invalid-text">
+                          Campo requerido
+                        </div>
                       </div>
                     </div>
                     <div class="col-lg-6">
-                      <label class="form-label" for="apellidos">
+                      <label class="form-label" for="lastName">
                         Apellidos
                       </label>
                       <input
                         type="text"
-                        formControlName="apellidos"
-                        id="apellidos"
+                        formControlName="lastName"
+                        id="lastName"
                         class="form-control"
-                        [ngClass]="{invalid: validarCampo('apellidos')}"
+                        [ngClass]="{invalid: validateField('lastName')}"
                       />
-                      <div *ngIf="validarCampo('apellidos')">
-                        <div *ngIf="registerForm.get('apellidos')?.errors?.['required']" class="invalid-text">Campo requerido</div>
+                      <div *ngIf="validateField('lastName')">
+                        <div *ngIf="registerForm.controls['lastName']?.errors?.['required']" class="invalid-text">
+                          Campo requerido
+                        </div>
                       </div>
                     </div>
                   </div>
-
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="correo">
+                    <label class="form-label" for="email">
                       Correo electrónico
                     </label>
                     <input
                       type="email"
-                      id="correo"
-                      email="true"
-                      formControlName="correo"
+                      id="email"
+                      formControlName="email"
                       class="form-control"
-                      [ngClass]="{invalid: validarCampo('correo')}"
+                      [ngClass]="{invalid: validateField('email')}"
                     />
-                    <div *ngIf="validarCampo('correo')">
-                      <div *ngIf="registerForm.get('correo')?.errors?.['required']" class="invalid-text">Campo requerido</div>
-                      <div *ngIf="registerForm.get('correo')?.errors?.['email']" class="invalid-text">Correo invalido</div>
-                      <div *ngIf="registerForm.get('correo')?.errors?.['emailTaken']" class="invalid-text">Ya existe un usuario con el correo ingresado</div>
+                    <div *ngIf="validateField('email')">
+                      <div *ngIf="registerForm.controls['email']?.errors?.['required']" class="invalid-text">
+                        Campo requerido
+                      </div>
+                      <div *ngIf="registerForm.controls['email']?.errors?.['email']" class="invalid-text">
+                        Correo invalido
+                      </div>
+                      <div *ngIf="registerForm.controls['email']?.errors?.['emailTaken']" class="invalid-text">
+                        Ya existe un usuario con el correo ingresado
+                      </div>
                     </div>
                   </div>
-
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="contraseña"
+                    <label class="form-label" for="password"
                       >Contraseña
                     </label>
                     <input
                       type="password"
-                      id="contraseña"
+                      id="password"
                       minlength="8"
-                      formControlName="contraseña"
+                      formControlName="password"
                       class="form-control"
-                      [ngClass]="{invalid: validarCampo('contraseña')}"
+                      [ngClass]="{invalid: validateField('password')}"
                     />
-                    <div *ngIf="validarCampo('contraseña')">
-                      <div *ngIf="registerForm.get('contraseña')?.errors?.['required']" class="invalid-text">Campo requerido</div>
-                      <div *ngIf="registerForm.get('contraseña')?.errors?.['minlength']" class="invalid-text">La contraseña debe tener minimo 8 caracteres</div>
+                    <div *ngIf="validateField('password')">
+                      <div *ngIf="registerForm.controls['password']?.errors?.['required']" class="invalid-text">
+                        Campo requerido
+                      </div>
+                      <div *ngIf="registerForm.controls['password']?.errors?.['minlength']" class="invalid-text">
+                        La contraseña debe tener minimo 8 caracteres
+                      </div>
                     </div>
                   </div>
-
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="confirmarContraseña">
+                    <label class="form-label" for="confirmPassword">
                       Confirmar contraseña
                     </label>
                     <input
                       type="password"
-                      formControlName="confirmarContraseña"
-                      id="confirmarContraseña"
+                      formControlName="confirmPassword"
+                      id="confirmPassword"
                       class="form-control"
-                      [ngClass]="{invalid: validarCampo('confirmarContraseña')}"
+                      [ngClass]="{invalid: validateField('confirmPassword')}"
                     />
-                    <div *ngIf="validarCampo('confirmarContraseña')">
-                      <div *ngIf="registerForm.get('confirmarContraseña')?.errors?.['required']" class="invalid-text">Campo requerido</div>
-                      <div *ngIf="registerForm.get('confirmarContraseña')?.errors?.['notSame']" class="invalid-text">Las contraseñas deben ser iguales</div>
+                    <div *ngIf="validateField('confirmPassword')">
+                      <div *ngIf="registerForm.controls['confirmPassword']?.errors?.['required']" class="invalid-text">
+                        Campo requerido
+                      </div>
+                      <div *ngIf="registerForm.controls['confirmPassword']?.errors?.['notEqual']" class="invalid-text">
+                        Las contraseñas deben ser iguales
+                      </div>
                     </div>
                   </div>
-
                   <div class="pt-1 mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="button" type="submit">
-                     Registrarse
+                    <button
+                      class="btn btn-primary btn-lg btn-block"
+                      type="button"
+                      type="submit"
+                    >
+                      <span *ngIf="!loading">
+                        Registrarse
+                      </span>
+                      <span
+                        *ngIf="loading"
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
                     </button>
                   </div>
-
                   <div class="row gap-3">
                     <p class="pb-2" style="color: #393f81">
                       ¿Ya tienes una cuenta?
-                      <a [routerLink]="['/login']" style="color: #393f81">Ingresa aqui</a>
+                      <a [routerLink]="['/login']" style="color: #393f81">
+                        Ingresa aqui
+                      </a>
                     </p>
                   </div>
                 </form>

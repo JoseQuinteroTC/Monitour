@@ -15,7 +15,7 @@
         <li class="nav-item" *ngIf="!logged">
           <a class="nav-link nav-login" [routerLink]="['/login']" aria-current="page">Ingresar</a>
         </li>
-        <li class="nav-item" *ngIf="logged">
+        <li class="nav-item d-none d-lg-block" *ngIf="logged">
           <div class="dropdown">
             <a class="nav-link nav-login dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{ usuario.name }}
@@ -27,6 +27,17 @@
             </ul>
           </div>
         </li>
+        <div class="d-block d-lg-none">
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/mi-cuenta']">Mi cuenta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Mis mensajes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="javascript:;" (click)="logout()">Cerrar sesión</a>
+          </li>
+        </div>
       </ul>
     </div>
   </div>

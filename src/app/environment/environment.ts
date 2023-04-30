@@ -3,7 +3,7 @@ export const environment = {
   methods: {
     login: 'login',
     register: 'register',
-    monitores: 'monitores',
+    monitores: 'monitorias',
     userToken: 'userToken/',
     updateUser: 'updateData',
     updatePassword: 'updatePassword',

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MonitoriaModel } from 'src/app/models/monitoria.model';
 
 import { MonitoresService } from 'src/app/services/monitores.service';
 
@@ -9,8 +10,8 @@ import { MonitoresService } from 'src/app/services/monitores.service';
 })
 export class GridMonitoresComponent implements OnInit {
 
-  monitor: any;
-  imagenMonitor: any;
+  monitorias: MonitoriaModel[];
+  monitorPicture: string = "assets/img/stockMonitor.jpg";
 
   constructor(
     private monitoresService: MonitoresService
@@ -20,44 +21,9 @@ export class GridMonitoresComponent implements OnInit {
     this.monitoresService.getMonitores().subscribe(
       (resp: any) => {
         console.log(resp);
-        this.monitor = resp[0];
+        this.monitorias = resp;
       }
     )
   }
-
-  monitores: any[] = [
-    {
-      nombre: "Pepito perez",
-      id: 1,
-      foto: "assets/img/stockMonitor.jpg",
-      materia: "Ecuaciones diferenciales",
-      descripcion: "Descripcion sobre el monitor",
-      estudiantes: 35
-    },
-    {
-      nombre: "Pepito perez",
-      id: 2,
-      foto: "assets/img/stockMonitor.jpg",
-      materia: "Ecuaciones diferenciales",
-      descripcion: "Descripcion sobre el monitor",
-      estudiantes: 35
-    },
-    {
-      nombre: "Pepito perez",
-      id: 3,
-      foto: "assets/img/stockMonitor.jpg",
-      materia: "Ecuaciones diferenciales",
-      descripcion: "Descripcion sobre el monitor",
-      estudiantes: 35
-    },
-    {
-      nombre: "Pepito perez",
-      id: 4,
-      foto: "assets/img/stockMonitor.jpg",
-      materia: "Ecuaciones diferenciales",
-      descripcion: "Descripcion sobre el monitor",
-      estudiantes: 35
-    }
-  ]
 }
 

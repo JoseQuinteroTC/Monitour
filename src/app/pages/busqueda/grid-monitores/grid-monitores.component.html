@@ -1,30 +1,27 @@
 <div class="main-content">
   <div class="container">
-    <div class="col-lg-8 mx-auto">
-      <form class="d-flex gap-4">
-        <input class="form-control form-control-lg" type="search" placeholder="Buscar" aria-label="Buscar">
-        <button class="btn-primary position-static btn btn-lg" type="button">Buscar</button>
-      </form>
-    </div>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 my-4">
-      <div *ngFor="let monitor of monitores" class="col">
-        <div class="card card-clickable rounded-5">
-          <img [src]="monitor.foto" class="card-img-top rounded-top-5 ">
-          <div class="card-body">
-            <h3 class="card-title">{{ monitor.nombre }}</h3>
-            <h6 class="card-subtitle">{{ monitor.materia }}</h6>
-            <p class="card-text">{{ monitor.descripcion }}</p>
-            <a [routerLink]="['./monitor/',monitor.id]" class="stretched-link"></a>
-          </div>
+    <div class="col-12 col-lg-6 mx-auto">
+      <div class="search-bar">
+        <div class="search-bar-input">
+          <input type="text" id="search" placeholder="Buscar asignatura" autocomplete="no"/>
+        </div>
+        <div class="search-bar-icon">
+          <button type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
         </div>
       </div>
-      <div class="card card-clickable rounded-5">
-        <img [src]="monitor?.url_img_profile" class="card-img-top rounded-top-5 ">
-        <div class="card-body">
-          <h3 class="card-title">nombre epico</h3>
-          <h6 class="card-subtitle">materia epica</h6>
-          <p class="card-text">{{ monitor?.description }}</p>
-          <a [routerLink]="['./monitor/',monitor?.id]" class="stretched-link"></a>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 my-4">
+      <div *ngFor="let monitoria of monitorias" class="col">
+        <div class="card card-clickable rounded-5">
+          <img [src]="monitorPicture" class="card-img-top rounded-top-5 ">
+          <div class="card-body">
+            <h3 class="card-title">{{ monitoria.monitor }}</h3>
+            <h6 class="card-subtitle">{{ monitoria.course }}</h6>
+            <p class="card-text">{{ monitoria.description }}</p>
+            <a [routerLink]="['./monitor/',monitoria.id]" class="stretched-link"></a>
+          </div>
         </div>
       </div>
     </div>

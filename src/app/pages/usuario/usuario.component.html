@@ -16,7 +16,7 @@
         </ul>
       </div>
       <div class="row gap-5 p-4">
-        <aside class="col-4 card p-4 shadow">
+        <section class="col-12 col-lg-4 card p-4 shadow">
           <h3 class="mb-4">Informacion general</h3>
           <form [formGroup]="userFormGroup" #userForm="ngForm" (ngSubmit)="updateUser()">
             <div class="mb-3">
@@ -71,8 +71,8 @@
               Guardando...
             </button>
           </form>
-        </aside>
-        <section class="col-6 card p-4 shadow">
+        </section>
+        <section class="col-12 col-lg-6 card p-4 shadow">
           <div class="p-4">
             <h4 class="mb-3">Cambiar contraseña</h4>
             <form [formGroup]="passwordFormGroup" #passwordForm="ngForm" (ngSubmit)="changePassword()">

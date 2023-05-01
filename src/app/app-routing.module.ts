@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('src/app/pages/usuario/usuario.module').then((m)=> m.UsuarioModule)
   },
   {
+    path: 'inscripcion-monitor',
+    loadChildren: () => import('src/app/pages/inscripcion-monitor/inscripcion-monitor.module').then((m)=> m.InscripcionMonitorModule)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

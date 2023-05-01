@@ -1,0 +1,31 @@
+.form-control {
+  background-color: #f5f6f8;
+}
+
+.inscription-message {
+  color: white;
+}
+
+.inscription-message > .message-title {
+  color: #fbff91;
+}
+
+.content {
+  background-image: url('src/assets/img/background-monitor.svg');
+  padding-top: 120px;
+  padding-bottom: 40px;
+}
+
+.rounded-message {
+  display: inline-block;
+  background-color: #cdb325;
+  padding: .8rem;
+  border-radius: 1rem;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}

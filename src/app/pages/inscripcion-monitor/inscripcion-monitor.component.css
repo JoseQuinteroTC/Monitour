@@ -7,7 +7,7 @@
 }
 
 .inscription-message > .message-title {
-  color: #fbff91;
+  color: #F9F871;
 }
 
 .content {
@@ -18,7 +18,7 @@
 
 .rounded-message {
   display: inline-block;
-  background-color: #cdb325;
+  background-color: #00CCEB;
   padding: .8rem;
   border-radius: 1rem;
 }

@@ -4,7 +4,15 @@
       <div class="row px-5">
         <ul class="nav nav-underline">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" >
+            <a
+            class="nav-link"
+            id="nav-micuenta-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-micuenta"
+            type="button"
+            role="tab"
+            aria-controls="nav-micuenta"
+            aria-selected="true">
               Mi cuenta
             </a>
           </li>
@@ -14,171 +22,35 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a
+              class="nav-link active"
+              id="nav-monitorias-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-monitorias"
+              type="button"
+              role="tab"
+              aria-controls="nav-monitorias"
+              aria-selected="false"
+            >
               Mis monitorias
             </a>
           </li>
         </ul>
       </div>
-      <div class="row gap-5 p-4">
-        <section class="col-12 col-lg-4 card p-4 shadow">
-          <h3 class="mb-4">Informacion general</h3>
-          <form [formGroup]="userFormGroup" #userForm="ngForm" (ngSubmit)="updateUser()">
-            <div class="mb-3">
-              <label for="name" class="form-label">
-                Nombre
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                formControlName="name"
-              >
-            </div>
-            <div class="mb-3">
-              <label for="lastName" class="form-label">
-                Apellido
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="lastName"
-                formControlName="lastName"
-              >
-            </div>
-            <div class="mb-3">
-              <label for="correo" class="form-label">
-                Correo electronico
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                formControlName="email"
-              >
-              <div *ngIf="userFormGroup.controls['email']?.errors?.['email'] && userForm.submitted" class="invalid-text">
-                El correo ingresado es invalido
-              </div>
-              <div *ngIf="userFormGroup.controls['email']?.errors?.['emailTaken']" class="invalid-text">
-                Ya existe un usuario con el correo ingresado
-              </div>
-            </div>
-            <div class="mb-3">
-              <div *ngIf="userUpdated" class="success-message">
-                Los datos del usuario han sido modificados!
-              </div>
-            </div>
-            <button *ngIf="!updatingUser" type="submit" class="btn btn-primary">
-              Guardar
-            </button>
-            <button *ngIf="updatingUser" class="btn btn-primary" type="button" disabled>
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Guardando...
-            </button>
-          </form>
-        </section>
-        <section class="col-12 col-lg-6 card p-4 shadow">
-          <div class="p-4">
-            <h4 class="mb-3">Cambiar contraseña</h4>
-            <form [formGroup]="passwordFormGroup" #passwordForm="ngForm" (ngSubmit)="changePassword()">
-              <div class="mb-3">
-                <label for="password" class="form-label">
-                  Contraseña actual
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="password"
-                  formControlName="password"
-                >
-                <div *ngIf="passwordFormGroup.controls['password'].errors?.['invalidPassword']" class="invalid-text">
-                  La contraseña ingresada no coincide
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="newPassword" class="form-label">
-                  Nueva Contraseña
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="newPassword"
-                  formControlName="newPassword"
-                  minlength="8"
-                >
-                <div *ngIf="passwordFormGroup.controls['newPassword'].errors?.['minlength'] && passwordForm.submitted" class="invalid-text">
-                  La contraseña debe tener más de 8 caracteres
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="confirmPassword" class="form-label">
-                  Confirmar contraseña
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="confirmPassword"
-                  formControlName="confirmPassword"
-                >
-                <div *ngIf="passwordFormGroup.controls['confirmPassword'].errors?.['notEqual']" class="invalid-text">
-                  Las contraseñas deben ser iguales
-                </div>
-              </div>
-              <div class="mb-3">
-                <div *ngIf="passwordChanged" class="success-message">
-                  La contraseña ha sido modificada!
-                </div>
-              </div>
-              <button *ngIf="!changingPassword" type="submit" class="btn btn-primary">
-                Cambiar
-              </button>
-              <button *ngIf="changingPassword" class="btn btn-primary" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Guardando...
-              </button>
-            </form>
-          </div>
-          <div class="p-4">
-            <h4 class="mb-3">
-              Eliminar cuenta
-            </h4>
-            <p>
-              ¡CUIDADO! Todos tus datos serán eliminados definitivamente y de manera irreversible.
-              ¿Estas seguro que deseas continuar?
-            </p>
-            <div class="form-check custom-check" style="background-color: #f7f7f7" [ngClass]="{'delete-account': deleteCheck}">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="deleteCheck"
-                id="deleteCheck"
-                [(ngModel)]="deleteCheck"
-              >
-              <label class="form-check-label w-100" for="deleteCheck">
-                Eliminar mi cuenta
-              </label>
-            </div>
-            <button
-              *ngIf="!deleting"
-              type="button"
-              class="btn btn-primary mt-3"
-              [disabled]="!deleteCheck"
-              (click)="deleteUser()"
-            >
-              Aceptar
-            </button>
-            <button
-              *ngIf="deleting"
-              class="btn btn-primary mt-3"
-              type="button"
-              disabled
-            >
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Eliminando...
-            </button>
-          </div>
-        </section>
-      </div>
+      <div class="tab-content" id="nav-tabContent">
+        <app-detalles-usuario
+          class="tab-pane fade"
+          id="nav-micuenta"
+          role="tabpanel"
+          aria-labelledby="nav-micuenta-tab"
+        ></app-detalles-usuario>
+        <app-mis-monitorias
+          class="tab-pane fade show active"
+          id="nav-monitorias"
+          role="tabpanel"
+          aria-labelledby="nav-monitorias-tab"
+        ></app-mis-monitorias>
+    </div>
     </div>
   </div>
 <app-footer></app-footer>

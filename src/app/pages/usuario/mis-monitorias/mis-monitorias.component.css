@@ -1,0 +1,18 @@
+.table-header {
+  background-color: #6c7ae0;
+  border-radius: 100px;
+  color: white;
+}
+
+.table-container{
+  border-radius: 1;
+}
+
+.btn-danger {
+  background-color: #cf3e3e;
+  border-color: #cf3e3e;
+}
+
+.btn-icon {
+  padding: 3px 6px;
+}

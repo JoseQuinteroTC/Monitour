@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import 'bootstrap';
 import 'popper.js';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
     HttpClientModule
   ],
   providers: [
-    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     HttpClient
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,36 @@
+<div class="row p-4">
+  <div class="card shadow border-0 p-5">
+    <div class="row">
+      <div class="col">
+        <h3>Monitorias activas</h3>
+        <div class="d-flex border-box py-2">
+          <button type="button" class="btn btn-primary">Crear monitoria</button>
+        </div>
+        <div class="table-container py-2">
+          <table class="table">
+            <thead class="table-header">
+              <tr clas="p-3">
+                <th>Asignatura</th>
+                <th>Precio</th>
+                <th>Modalidad</th>
+                <th>Estudiantes</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let monitoria of monitorias">
+                <td>{{ monitoria.asignatura }}</td>
+                <td>{{ monitoria.precio }}</td>
+                <td>{{ monitoria.modalidad }}</td>
+                <td>{{ monitoria.estudiantes }}</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-icon"><i class="bi-x"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

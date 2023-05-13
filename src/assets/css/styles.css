@@ -1,3 +1,7 @@
+:root {
+  --primaryColor: #4f96ff;
+}
+
 .main-content {
   margin-top: 8rem;
   margin-bottom: 2rem;
@@ -44,6 +48,12 @@ body {
   background-color: #aed6fb;
 }
 
+.nav-link {
+  color: #000;
+}
 
+.nav-underline .nav-link.active, .nav-underline .show > .nav-link {
+  border-bottom-color: var(--primaryColor);
+}
 
 

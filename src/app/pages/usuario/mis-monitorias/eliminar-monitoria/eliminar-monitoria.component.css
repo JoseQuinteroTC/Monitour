@@ -1,0 +1,20 @@
+.btn-danger {
+  background-color: #cf3e3e;
+  border-color: #cf3e3e;
+}
+
+.btn-icon {
+  padding: 3px 6px;
+}
+
+.btn-confirm {
+  padding: 10px 3rem;
+}
+
+.btn-dismiss {
+  background-color: #f1f1f1;
+}
+
+.btn-danger:hover {
+  background-color: #c13838;
+}

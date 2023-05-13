@@ -2,35 +2,87 @@
   <div class="card shadow border-0 p-5">
     <div class="row">
       <div class="col">
-        <h3>Monitorias activas</h3>
+        <h3 class="text-center fw-bold">Monitorias activas</h3>
         <div class="d-flex border-box py-2">
-          <button type="button" class="btn btn-primary">Crear monitoria</button>
+          <button type="button" class="btn btn-primary">
+            <i class="bi-plus-lg me-1"></i>
+            Crear monitoria
+          </button>
         </div>
-        <div class="table-container py-2">
-          <table class="table">
-            <thead class="table-header">
-              <tr clas="p-3">
-                <th>Asignatura</th>
-                <th>Precio</th>
-                <th>Modalidad</th>
-                <th>Estudiantes</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let monitoria of monitorias">
-                <td>{{ monitoria.asignatura }}</td>
-                <td>{{ monitoria.precio }}</td>
-                <td>{{ monitoria.modalidad }}</td>
-                <td>{{ monitoria.estudiantes }}</td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-icon"><i class="bi-x"></i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="mt-3">
+          <div *ngFor="let monitoria of monitorias" class="bubble-container row my-3 shadow-sm">
+            <div class="col-11 bubble">
+              <div class="col-8 bubble-info">
+                <h4 class="fw-bold">
+                  {{ monitoria.asignatura }}
+                </h4>
+                <div class="text-secondary">
+                  {{ monitoria.descripcion }}
+                </div>
+              </div>
+              <div class="col-2 bubble-details">
+                <div class="field">
+                  <label class="text-modalidad">
+                    <i class="bi-book"></i>
+                    Modalidad
+                  </label>
+                  <div> {{ monitoria.modalidad }}</div>
+                </div>
+                <div class="field">
+                  <label class="text-precio">
+                    <i class="bi-currency-dollar"></i>
+                    Precio por hora
+                  </label>
+                  <div>{{ monitoria.precio | currency   }}</div>
+                </div>
+              </div>
+              <div class="col-2 bubble-extras">
+                <div class="field">
+                  <label class="text-visitas">
+                    <i class="bi-person-fill"></i>
+                    Visitas
+                  </label>
+                  <div>{{ monitoria.visitas }}</div>
+                </div>
+                <div class="field">
+                  <label class="text-solicitudes">
+                    <i class="bi-bookmark-fill"></i>
+                    Solicitudes
+                  </label>
+                  <div>{{ monitoria.solicitudes}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1 bubble-actions dropdown-center">
+                <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi-three-dots-vertical"></i>
+                </a>
+                <ul class="dropdown-menu shadow">
+                  <li>
+                    <a class="dropdown-item" href="#"><i class="bi-pencil"></i>Editar</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#eliminarMonitoria">
+                      <i class="bi-eraser"></i>Eliminar
+                    </a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+          <div class="empty-message" *ngIf="monitorias.length === 0">
+            <span>Parece que aun no has creado ninguna monitoria, haz click en <b>"Crear monitoria"</b> para comenzar</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<app-eliminar-monitoria
+  class="modal fade"
+  id="eliminarMonitoria"
+  tabindex="-1"
+  aria-labelledby="eliminarMonitoria"
+  aria-hidden="true"
+></app-eliminar-monitoria>

@@ -1,18 +1,80 @@
-.table-header {
-  background-color: #6c7ae0;
-  border-radius: 100px;
-  color: white;
+.bubble-container {
+  border: 1px solid #f2f2f2;
+  border-radius: 2rem;
+  transition: background .3s;
 }
 
-.table-container{
-  border-radius: 1;
+.bubble-container:hover {
+  background-color: #fafafa;
 }
 
-.btn-danger {
-  background-color: #cf3e3e;
-  border-color: #cf3e3e;
+.bubble {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
-.btn-icon {
-  padding: 3px 6px;
+.bubble > div {
+  padding: 1rem;
+}
+
+.bubble-extras, .bubble-details {
+  text-align: center;
+}
+
+.bubble-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 2rem 2rem 0;
+}
+
+.bubble-actions > a > i {
+  color: black;
+  font-size: 32px;
+}
+
+.field {
+  line-height: 2rem;
+}
+
+.field > label {
+  font-weight: bold;
+}
+
+.empty-message {
+  display: flex;
+  padding: 1rem;
+  background-color: #e8f9ff;
+  border-radius: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.dropdown-menu {
+  border: none;
+  padding: 0;
+}
+
+.dropdown-menu > li > a {
+  padding: 1rem 1.5rem;
+  display: flex;
+  gap: 10px;
+}
+
+.text-modalidad {
+  color: #4fa6dd;
+}
+
+.text-visitas {
+  color: #d79952;
+}
+
+.text-precio{
+  color: rgb(59, 177, 80);
+}
+
+.text-solicitudes {
+  color: #ff7373;
 }

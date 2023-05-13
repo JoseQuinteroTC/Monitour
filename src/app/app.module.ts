@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import 'bootstrap';
 import 'popper.js';
 import { HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HashLocationStrategy, LocationStrategy} from '@angular/common';
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    HttpClient
+    HttpClient,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

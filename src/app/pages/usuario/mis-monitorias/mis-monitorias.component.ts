@@ -10,22 +10,34 @@ export class MisMonitoriasComponent {
   monitorias: any[] = [
     {
       asignatura: "Ecuaciones diferenciales",
-      precio: "5000",
-      modalidad: "Virtual",
-      estudiantes: 4
-    },
-    {
-      asignatura: "Calculo integral",
-      precio: "3000",
+      descripcion: `En esta tutoría aprenderás a resolver ecuaciones diferenciales de primer y segundo orden,
+      junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
+      comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
+      precio: "16000",
       modalidad: "Presencial",
-      estudiantes: 8
+      solicitudes: 3,
+      visitas: 32
     },
     {
-      asignatura: "Calculo diferencial",
-      precio: "2000",
+      asignatura: "Estructura de datos",
+      descripcion: `En esta tutoría aprenderás a resolver ecuaciones diferenciales de primer y segundo orden,
+      junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
+      comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
+      precio: "22000",
+      modalidad: "Virtual",
+      solicitudes: 10,
+      visitas: 55
+    },
+    {
+      asignatura: "Ingles",
+      descripcion: `En esta tutoría aprenderás a resolver ecuaciones diferenciales de primer y segundo orden,
+      junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
+      comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
+      precio: "18000",
       modalidad: "Hibrido",
-      estudiantes: 3
-    }
+      solicitudes: 15,
+      visitas: 70
+    },
   ]
 
 }

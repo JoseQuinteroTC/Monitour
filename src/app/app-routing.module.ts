@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'mi-cuenta',
-    loadChildren: () => import('src/app/pages/usuario/usuario.module').then((m)=> m.UsuarioModule)
+    loadChildren: () => import('src/app/pages/usuario/usuario.module').then((m)=> m.UsuarioModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'inscripcion-monitor',

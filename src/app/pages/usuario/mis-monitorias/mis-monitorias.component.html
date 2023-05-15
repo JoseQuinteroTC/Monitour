@@ -4,7 +4,13 @@
       <div class="col">
         <h3 class="text-center fw-bold">Monitorias activas</h3>
         <div class="d-flex border-box py-2">
-          <button type="button" class="btn btn-primary">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#crearEditarMonitoria"
+            (click)="showModalMonitoria()"
+          >
             <i class="bi-plus-lg me-1"></i>
             Crear monitoria
           </button>
@@ -59,10 +65,18 @@
                 </a>
                 <ul class="dropdown-menu shadow">
                   <li>
-                    <a class="dropdown-item" href="#"><i class="bi-pencil"></i>Editar</a>
+                    <a
+                      class="dropdown-item"
+                      type="button"
+                      (click)="showModalMonitoria(monitoria)"
+                      data-bs-toggle="modal"
+                      data-bs-target="#crearEditarMonitoria"
+                    >
+                      <i class="bi-pencil"></i>Editar
+                    </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#eliminarMonitoria">
+                    <a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#eliminarMonitoria" (click)="showModalEliminar()">
                       <i class="bi-eraser"></i>Eliminar
                     </a>
                   </li>
@@ -78,11 +92,6 @@
   </div>
 </div>
 
-<!-- Modal -->
-<app-eliminar-monitoria
-  class="modal fade"
-  id="eliminarMonitoria"
-  tabindex="-1"
-  aria-labelledby="eliminarMonitoria"
-  aria-hidden="true"
-></app-eliminar-monitoria>
+<!-- Modals -->
+<app-crear-editar-monitoria [editarMonitoria]="editarMonitoria"></app-crear-editar-monitoria>
+<app-eliminar-monitoria></app-eliminar-monitoria>

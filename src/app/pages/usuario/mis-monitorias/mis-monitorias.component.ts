@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalObservablesService } from 'src/app/services/observables/modal-observables.service';
 
 @Component({
   selector: 'app-mis-monitorias',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class MisMonitoriasComponent {
 
+  constructor(
+    private modalObservables: ModalObservablesService
+  ) {
+
+  }
+
+  editarMonitoria: boolean;
+
   monitorias: any[] = [
     {
       asignatura: "Ecuaciones diferenciales",
@@ -14,7 +23,10 @@ export class MisMonitoriasComponent {
       junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
       comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
       precio: "16000",
-      modalidad: "Presencial",
+      modalidad: {
+        id: 1,
+        nombre: "Presencial"
+      },
       solicitudes: 3,
       visitas: 32
     },
@@ -24,7 +36,10 @@ export class MisMonitoriasComponent {
       junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
       comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
       precio: "22000",
-      modalidad: "Virtual",
+      modalidad: {
+        id: 2,
+        nombre: "Virtual"
+      },
       solicitudes: 10,
       visitas: 55
     },
@@ -34,10 +49,20 @@ export class MisMonitoriasComponent {
       junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
       comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
       precio: "18000",
-      modalidad: "Hibrido",
+      modalidad: {
+        id: 3,
+        nombre: "Hibrido"
+      },
       solicitudes: 15,
       visitas: 70
     },
   ]
 
+  showModalMonitoria(monitoria?: any) {
+    this.modalObservables.setModalMonitoriaObservable(monitoria);
+  }
+
+  showModalEliminar(){
+    this.modalObservables.setMonitoriaEliminar("Probando");
+  }
 }

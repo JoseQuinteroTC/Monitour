@@ -45,7 +45,7 @@ export class DetallesUsuarioComponent {
     this.authService.getUserByToken().subscribe(
       (resp) => {
         console.log(resp);
-        this.user = resp[0];
+        this.user = resp;
         this.setUserData();
       }
     )

@@ -10,15 +10,9 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
 
   constructor(
-    private adminObservables: AdminObservableService,
     private authService: AuthService
   ) {
-    this.authService.getUserByToken().subscribe(
-      (resp) => {
-        const user = resp[0];
-          this.adminObservables.setCurrentUser(user);
-      }
-    )
+    this.authService.getUserByToken().subscribe();
   }
 
   title = "Monitour";

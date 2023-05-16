@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminObservableService } from 'src/app/services/observables/admin.observable.service';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,12 +17,15 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private adminObservables: AdminObservableService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
    this.logged = this.adminObservables.isLoggedIn();
-   this.usuario = this.adminObservables.getCurrentUser();
+   this.authService.getUserByToken().subscribe(
+    usuario => this.usuario = usuario
+   );
   }
 
   logout() {

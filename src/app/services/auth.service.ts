@@ -2,11 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '../environment/environment';
+import { of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  private currentUser: any;
 
   constructor(
     private http: HttpClient
@@ -16,7 +19,11 @@ export class AuthService {
     return this.http.post(
       environment.API_URL + environment.methods.login,
       body
-    )
+    ).pipe(
+      tap(user => {
+        this.currentUser = user;
+      })
+    );
   }
 
   updateUser(body: FormData) {
@@ -35,10 +42,15 @@ export class AuthService {
 
   getUserByToken() {
     const token = this.getToken();
-    console.log(token);
+    if (this.currentUser) {
+      return of(this.currentUser);
+    }
+
     return this.http.get(
       environment.API_URL + environment.methods.userToken
-      + token
+      + token).pipe(tap(user => {
+        this.currentUser = user;
+      })
     )
   }
 

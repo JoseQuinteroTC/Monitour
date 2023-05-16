@@ -1,68 +1,85 @@
-import { Component } from '@angular/core';
-import { ModalObservablesService } from 'src/app/services/observables/modal-observables.service';
+import { Component, OnInit } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
+import { CrearEditarMonitoriaComponent } from './crear-editar-monitoria/crear-editar-monitoria.component';
+import { EliminarMonitoriaComponent } from './eliminar-monitoria/eliminar-monitoria.component';
+import { MonitoriasService } from 'src/app/services/monitorias.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UsuarioModel } from 'src/app/models/usuario.model';
+import { firstValueFrom } from 'rxjs';
+import { MonitoriaObservablesService } from 'src/app/services/observables/monitoria-observables.service';
 
 @Component({
   selector: 'app-mis-monitorias',
   templateUrl: './mis-monitorias.component.html',
   styleUrls: ['./mis-monitorias.component.css']
 })
-export class MisMonitoriasComponent {
+export class MisMonitoriasComponent implements OnInit{
+
+  monitor: UsuarioModel;
+  monitorias: any[] = [];
+  loading: boolean = false;
 
   constructor(
-    private modalObservables: ModalObservablesService
-  ) {
+    private dialogService: DialogService,
+    private monitoriasService: MonitoriasService,
+    private monitoriasObservables: MonitoriaObservablesService,
+    private authService: AuthService
+  ) {}
 
+  async ngOnInit() {
+    this.loading = true;
+    await firstValueFrom(this.authService.getUserByToken()).then(
+      monitor => this.monitor = monitor
+    );
+    this.cargarMonitorias();
+    this.monitoriasObservables.actualizarMonitoriasObservable.subscribe(
+      (value: boolean) => {
+        console.log(value);
+        if (value) {
+          this.cargarMonitorias();
+        }
+      }
+    )
   }
 
-  editarMonitoria: boolean;
+  cargarMonitorias() {
+    this.loading = true;
+    this.monitoriasService.getMonitoriasByMonitor(this.monitor.id).subscribe(
+      (monitorias: any[]) => {
+        console.log(monitorias);
+        this.monitorias = monitorias;
+        this.loading = false;
+      }
+    );
+  }
 
-  monitorias: any[] = [
-    {
-      asignatura: "Ecuaciones diferenciales",
-      descripcion: `En esta tutoría aprenderás a resolver ecuaciones diferenciales de primer y segundo orden,
-      junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
-      comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
-      precio: "16000",
-      modalidad: {
-        id: 1,
-        nombre: "Presencial"
-      },
-      solicitudes: 3,
-      visitas: 32
-    },
-    {
-      asignatura: "Estructura de datos",
-      descripcion: `En esta tutoría aprenderás a resolver ecuaciones diferenciales de primer y segundo orden,
-      junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
-      comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
-      precio: "22000",
-      modalidad: {
-        id: 2,
-        nombre: "Virtual"
-      },
-      solicitudes: 10,
-      visitas: 55
-    },
-    {
-      asignatura: "Ingles",
-      descripcion: `En esta tutoría aprenderás a resolver ecuaciones diferenciales de primer y segundo orden,
-      junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
-      comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
-      precio: "18000",
-      modalidad: {
-        id: 3,
-        nombre: "Hibrido"
-      },
-      solicitudes: 15,
-      visitas: 70
-    },
-  ]
+  // monitorias: any[] = [
+  //   {
+  //     asignatura: "Ecuaciones diferenciales",
+  //     descripcion: `En esta tutoría aprenderás a resolver ecuaciones diferenciales de primer y segundo orden,
+  //     junto con problemas de condiciones iniciales y de frontera. Con teoría y ejercicios prácticos,
+  //     comprenderás cómo aplicar las ecuaciones diferenciales en situaciones reales.`,
+  //     precio: "16000",
+  //     modalidad: {
+  //       id: 1,
+  //       nombre: "Presencial"
+  //     },
+  //     solicitudes: 3,
+  //     visitas: 32
+  //   }
+  // ]
 
   showModalMonitoria(monitoria?: any) {
-    this.modalObservables.setModalMonitoriaObservable(monitoria);
+    this.dialogService.open(
+      CrearEditarMonitoriaComponent,
+      {header: 'Detalles de la monitoria', data: monitoria? monitoria : ""}
+    );
   }
 
-  showModalEliminar(){
-    this.modalObservables.setMonitoriaEliminar("Probando");
+  showModalEliminar(monitoriaId: number){
+    this.dialogService.open(
+      EliminarMonitoriaComponent,
+      {header: 'Confirmar eliminacion', data: monitoriaId, width: '40rem'}
+    );
   }
 }

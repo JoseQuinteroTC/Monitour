@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MonitoriaModel } from 'src/app/models/monitoria.model';
-
-import { MonitoresService } from 'src/app/services/monitores.service';
+import { MonitoriasService } from 'src/app/services/monitorias.service';
 
 @Component({
   selector: 'app-grid-monitores',
@@ -14,11 +13,11 @@ export class GridMonitoresComponent implements OnInit {
   monitorPicture: string = "assets/img/stockMonitor.jpg";
 
   constructor(
-    private monitoresService: MonitoresService
+    private monitoriasService: MonitoriasService
   ){}
 
   ngOnInit(): void {
-    this.monitoresService.getMonitores().subscribe(
+    this.monitoriasService.getMonitorias().subscribe(
       (resp: any) => {
         console.log(resp);
         this.monitorias = resp;

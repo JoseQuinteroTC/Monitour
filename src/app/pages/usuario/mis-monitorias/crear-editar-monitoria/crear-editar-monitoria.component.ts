@@ -1,6 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { ModalObservablesService } from 'src/app/services/observables/modal-observables.service';
+import { UsuarioModel } from 'src/app/models/usuario.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { MonitoriasService } from 'src/app/services/monitorias.service';
+import { MonitoriaObservablesService } from 'src/app/services/observables/monitoria-observables.service';
 
 @Component({
   selector: 'app-crear-editar-monitoria',
@@ -9,7 +15,7 @@ import { ModalObservablesService } from 'src/app/services/observables/modal-obse
 })
 export class CrearEditarMonitoriaComponent implements OnInit{
 
-  @Input('editarMonitoria') editarMonitoria: boolean;
+  @ViewChild('monitoriaForm') monitoriaForm: NgForm;
 
   descripcionMonitoria: string;
   precioMonitoria: string;
@@ -33,35 +39,34 @@ export class CrearEditarMonitoriaComponent implements OnInit{
 
   selectedModalidad: any;
   modalidades: any[] = [
-    {
-      id: 1,
-      nombre: "Presencial"
-    },
-    {
-      id: 2,
-      nombre: "Virtual"
-    },
-    {
-      id: 3,
-      nombre: "Hibrido"
-    }
+    "Presencial",
+    "Virtual",
+    "Hibrido"
   ]
 
   modalSubscription: Subscription;
+  monitoriaSubscription: Subscription;
+  usuario: UsuarioModel;
+  monitoria: any;
 
   constructor(
-    private modalObservables: ModalObservablesService
+    private authService: AuthService,
+    private dialogRef: DynamicDialogRef,
+    private dialogConfig: DynamicDialogConfig,
+    private monitoriasService: MonitoriasService,
+    private monitoriasObservables: MonitoriaObservablesService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    this.modalSubscription = this.modalObservables.modalMonitoriaObservable.subscribe(
-      (monitoria: any) => {
-        console.log(monitoria);
-        if (monitoria) {
-          this.setInfoMonitoria(monitoria);
-        }
-      }
+    this.authService.getUserByToken().subscribe(
+      usuario => this.usuario = usuario
     )
+    this.monitoria = this.dialogConfig.data;
+    console.log(this.monitoria);
+    if (this.monitoria) {
+      this.setInfoMonitoria();
+    }
   }
 
   filterAsignaturas(event: any): void {
@@ -71,11 +76,51 @@ export class CrearEditarMonitoriaComponent implements OnInit{
     );
   }
 
-  setInfoMonitoria(monitoria: any) {
-    console.log(monitoria);
-    this.descripcionMonitoria = monitoria.descripcion;
-    this.selectedAsignatura = monitoria.asignatura;
-    this.selectedModalidad = monitoria.modalidad;
-    this.precioMonitoria = monitoria.precio;
+  setInfoMonitoria() {
+    this.descripcionMonitoria = this.monitoria.description;
+    this.selectedAsignatura = this.monitoria.course;
+    this.selectedModalidad = this.monitoria.modality;
+    this.precioMonitoria = this.monitoria.price;
+  }
+
+  guardarMonitoria() {
+    if (this.monitoria) {
+      const body = {
+        id: this.monitoria.id,
+        course: this.selectedAsignatura,
+        price: this.precioMonitoria,
+        description: this.descripcionMonitoria,
+        modality: this.selectedModalidad.nombre
+      }
+      this.monitoriasService.updateMonitoria(body).subscribe(
+        ({data: monitoria}: any) => {
+          console.log(monitoria);
+          this.monitoriasObservables.setActualizarMonitorias(true);
+          this.dialogRef.close();
+          this.messageService.add({key: 'toastmonitorias', severity: 'success', detail: 'La monitoria ha sido actualizada'});
+        }
+      )
+    }
+    else {
+      const body = {
+        idMonitor: this.usuario.id,
+        course: this.selectedAsignatura,
+        price: this.precioMonitoria,
+        description: this.descripcionMonitoria,
+        modality: this.selectedModalidad.nombre
+      }
+      this.monitoriasService.nuevaMonitoria(body).subscribe(
+        ({data: monitoria}: any) => {
+          console.log(monitoria);
+          this.monitoriasObservables.setActualizarMonitorias(true);
+          this.dialogRef.close();
+          this.messageService.add({key: 'toastmonitorias', severity: 'success', detail: 'La monitoria ha sido creada'});
+        }
+      );
+    }
+  }
+
+  cerrarModal() {
+    this.dialogRef.close();
   }
 }

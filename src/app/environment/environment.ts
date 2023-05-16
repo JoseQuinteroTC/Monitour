@@ -3,10 +3,14 @@ export const environment = {
   methods: {
     login: 'login',
     register: 'register',
-    monitores: 'monitorias',
+    monitorias: 'monitorias',
     userToken: 'userToken/',
     updateUser: 'updateData',
     updatePassword: 'updatePassword',
-    deleteUser: 'deleteUser/'
+    deleteUser: 'deleteUser/',
+    monitoriasByMonitorId: 'monitorias/',
+    registerMonitoria: 'registerMonitoria',
+    modificarMonitoria: 'modificarMonitoria',
+    deleteMonitoria: 'deleteMonitoria/'
   }
 }

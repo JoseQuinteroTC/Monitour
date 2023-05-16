@@ -5,14 +5,12 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FilterPipe } from './pipes/filter.pipe';
 import { PrimengModule } from './primeng/primeng.module';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    FooterComponent,
-    FilterPipe
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +24,6 @@ import { PrimengModule } from './primeng/primeng.module';
     FooterComponent,
     FormsModule,
     ReactiveFormsModule,
-    FilterPipe,
     PrimengModule
   ]
 })

@@ -79,7 +79,7 @@ export class MisMonitoriasComponent implements OnInit{
   showModalEliminar(monitoriaId: number){
     this.dialogService.open(
       EliminarMonitoriaComponent,
-      {header: 'Confirmar eliminacion', data: monitoriaId, width: '40rem'}
+      {header: 'Confirmar eliminación', data: monitoriaId, width: '40rem'}
     );
   }
 }

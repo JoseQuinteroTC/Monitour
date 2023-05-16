@@ -12,6 +12,7 @@ import { MonitoriaObservablesService } from 'src/app/services/observables/monito
 export class EliminarMonitoriaComponent implements OnInit {
 
   monitoriaId: number;
+  loading: boolean;
 
   ngOnInit(): void {
     this.monitoriaId = this.dialogConfig.data;
@@ -30,9 +31,11 @@ export class EliminarMonitoriaComponent implements OnInit {
   }
 
   eliminarMonitoria() {
+    this.loading = true;
     this.monitoriasService.deleteMonitoria(this.monitoriaId).subscribe(
       resp => {
         this.monitoriasObservables.setActualizarMonitorias(true);
+        this.loading = false;
         this.dialogRef.close();
         this.messageService.add(
           { key: 'toastmonitorias', severity: 'success',  detail: 'La monitoria ha sido eliminada'}

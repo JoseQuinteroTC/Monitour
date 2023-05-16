@@ -1,11 +1,15 @@
 <div class="modal-dialog">
   <div class="modal-content p-3">
     <div class="modal-body fs-5">
-      <p>Esta a punto de eliminar una monitoria y toda su informacion de manera irreversible</p>
+      <p>Esta a punto de eliminar una monitoria y toda su información de manera irreversible</p>
       <p>¿Está seguro que desea continuar?</p>
     </div>
     <div class="d-flex justify-content-evenly mt-2">
-      <button type="button" class="btn btn-danger btn-confirm" (click)="eliminarMonitoria()">Aceptar</button>
+      <button *ngIf="!loading" type="button" class="btn btn-danger btn-confirm" (click)="eliminarMonitoria()">Aceptar</button>
+      <button *ngIf="loading" class="btn btn-danger btn-confirm" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Guardando...
+      </button>
       <button type="button" class="btn btn-secondary btn-confirm" (click)="cerrarModal()">Cancelar</button>
     </div>
   </div>

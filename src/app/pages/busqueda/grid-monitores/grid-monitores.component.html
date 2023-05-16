@@ -17,7 +17,7 @@
         <div class="card card-clickable rounded-5">
           <img [src]="monitorPicture" class="card-img-top rounded-top-5 ">
           <div class="card-body">
-            <h3 class="card-title">{{ monitoria.monitor }}</h3>
+            <h3 class="card-title">{{ monitoria.id }}</h3>
             <h6 class="card-subtitle">{{ monitoria.course }}</h6>
             <p class="card-text">{{ monitoria.description }}</p>
             <a [routerLink]="['./monitor/',monitoria.id]" class="stretched-link"></a>

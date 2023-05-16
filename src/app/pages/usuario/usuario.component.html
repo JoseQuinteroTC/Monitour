@@ -5,7 +5,7 @@
         <ul class="nav nav-underline">
           <li class="nav-item">
             <a
-            class="nav-link"
+            class="nav-link active"
             id="nav-micuenta-tab"
             data-bs-toggle="tab"
             data-bs-target="#nav-micuenta"
@@ -23,7 +23,7 @@
           </li>
           <li class="nav-item">
             <a
-              class="nav-link active"
+              class="nav-link"
               id="nav-monitorias-tab"
               data-bs-toggle="tab"
               data-bs-target="#nav-monitorias"
@@ -39,13 +39,13 @@
       </div>
       <div class="tab-content" id="nav-tabContent">
         <app-detalles-usuario
-          class="tab-pane fade"
+          class="tab-pane fade show active"
           id="nav-micuenta"
           role="tabpanel"
           aria-labelledby="nav-micuenta-tab"
         ></app-detalles-usuario>
         <app-mis-monitorias
-          class="tab-pane fade show active"
+          class="tab-pane fade"
           id="nav-monitorias"
           role="tabpanel"
           aria-labelledby="nav-monitorias-tab"

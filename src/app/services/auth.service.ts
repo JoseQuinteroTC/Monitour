@@ -20,8 +20,8 @@ export class AuthService {
       environment.API_URL + environment.methods.login,
       body
     ).pipe(
-      tap(user => {
-        this.currentUser = user;
+      tap(  (data: any)=> {
+        this.currentUser = data.user;
       })
     );
   }

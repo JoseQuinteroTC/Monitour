@@ -1,5 +1,6 @@
 export interface MonitoriaModel {
   id: number;
+  monitor: string;
   idMonitor: number;
   course: string;
   description: string;

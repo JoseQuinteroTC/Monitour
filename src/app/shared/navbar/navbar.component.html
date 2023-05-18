@@ -23,7 +23,7 @@
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" [routerLink]="['/mi-cuenta']">Mi cuenta</a></li>
               <li><a class="dropdown-item" href="#">Mis mensajes</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/inscripcion-monitor']">Ser monitor</a></li>
+              <li *ngIf="!usuario?.document"><a class="dropdown-item" [routerLink]="['/inscripcion-monitor']">Ser monitor</a></li>
               <li><a class="dropdown-item" href="javascript:;" (click)="logout()">Cerrar sesión</a></li>
             </ul>
           </div>

@@ -26,7 +26,9 @@ export class DetallesUsuarioComponent {
   userFormGroup: FormGroup = this.fb.group({
     name: ['', Validators.required],
     lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]]
+    email: ['', [Validators.required, Validators.email]],
+    description: [''],
+    phone_number: ['']
   });
 
   passwordFormGroup: FormGroup = this.fb.group({
@@ -52,12 +54,16 @@ export class DetallesUsuarioComponent {
   }
 
   setUserData() {
-    if(!this.user){
+    if (!this.user) {
       return;
     }
     this.userFormGroup.controls['name'].setValue(this.user.name);
     this.userFormGroup.controls['lastName'].setValue(this.user.lastName);
     this.userFormGroup.controls['email'].setValue(this.user.email);
+    if (this.user?.document) {
+      this.userFormGroup.controls['description'].setValue(this.user.description);
+      this.userFormGroup.controls['phone_number'].setValue(this.user.phone_number);
+    }
   }
 
   updateUser() {
@@ -70,6 +76,10 @@ export class DetallesUsuarioComponent {
     form.append('name', this.userFormGroup.get('name')?.value);
     form.append('lastName', this.userFormGroup.get('lastName')?.value);
     form.append('email', this.userFormGroup.get('email')?.value);
+    if (this.user?.document) {
+      form.append('description', this.userFormGroup.get('description')?.value);
+      form.append('phone_number', this.userFormGroup.get('phone_number')?.value);
+    }
     firstValueFrom(this.authService.updateUser(form)).then(
     () => {
       this.updatingUser = false;

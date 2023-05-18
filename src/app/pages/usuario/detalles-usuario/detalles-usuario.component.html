@@ -41,6 +41,33 @@
           Ya existe un usuario con el correo ingresado
         </div>
       </div>
+      <div *ngIf="user.document">
+        <div class="mb-3">
+          <label for="description" class="form-label">
+            Celular
+          </label>
+          <input
+            type="tel"
+            formControlName="phone_number"
+            id="phone_number"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">
+            Descripcion sobre ti
+          </label>
+          <textarea
+            rows="5"
+            cols="30"
+            class="w-100"
+            pInputTextarea
+            id="descripcion"
+            formControlName="description"
+          ></textarea>
+        </div>
+
+      </div>
       <div class="mb-3">
         <div *ngIf="userUpdated" class="success-message">
           Los datos del usuario han sido modificados!

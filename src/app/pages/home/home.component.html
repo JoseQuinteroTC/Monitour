@@ -12,7 +12,15 @@
                     <span class="input-group-text search-bar-icon">
                       <img src="assets/img/book-open-svgrepo-com.svg" alt="libro" height="25px">
                     </span>
-                    <input type="text" class="form-control search-bar-input" placeholder="Nombre de la asignatura" aria-label="Username" aria-describedby="basic-addon1">
+                    <input
+                      type="text"
+                      class="form-control search-bar-input"
+                      placeholder="Nombre de la asignatura"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                      [(ngModel)]="queryBusqueda"
+                      (keydown.enter)="buscarMonitorias()"
+                    >
                   </div>
               </div>
           </div>

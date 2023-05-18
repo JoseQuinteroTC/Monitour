@@ -14,20 +14,42 @@
           </p>
         </div>
         <div class="card p-5 shadow">
-          <form>
+          <form #monitorForm="ngForm">
             <div class="mb-3">
               <label for="document" class="form-label">Número de documento</label>
-              <input type="text" class="form-control" id="document">
+              <input
+                type="text"
+                id="document"
+                class="form-control"
+                [(ngModel)]="documento"
+                name="documento"
+                [required]="true"
+              >
             </div>
             <div class="mb-3">
               <label for="phoneNumber" class="form-label">Celular</label>
-              <input type="tel" class="form-control" id="phoneNumber">
+              <input
+                type="tel"
+                id="phoneNumber"
+                class="form-control"
+                name="celular"
+                [(ngModel)]="celular"
+                [required]="true"
+              >
             </div>
             <div class="mb-3">
               <label for="description" class="form-label">Descripción de ti</label>
-              <textarea class="form-control" id="descripcion" rows="5"></textarea>
+              <textarea
+                id="descripcion"
+                rows="5"
+                class="form-control"
+                id="description"
+                name="descripcion"
+                [(ngModel)]="descripcion"
+                [required]="true"
+              ></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg">Inscribirse</button>
+            <button type="submit" class="btn btn-primary btn-lg" (click)="nuevoMonitor()">Inscribirse</button>
           </form>
         </div>
       </div>

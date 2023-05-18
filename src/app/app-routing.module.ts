@@ -27,7 +27,8 @@ const routes: Routes = [
   },
   {
     path: 'inscripcion-monitor',
-    loadChildren: () => import('src/app/pages/inscripcion-monitor/inscripcion-monitor.module').then((m)=> m.InscripcionMonitorModule)
+    loadChildren: () => import('src/app/pages/inscripcion-monitor/inscripcion-monitor.module').then((m)=> m.InscripcionMonitorModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

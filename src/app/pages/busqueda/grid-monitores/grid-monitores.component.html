@@ -3,24 +3,45 @@
     <div class="col-12 col-lg-6 mx-auto">
       <div class="search-bar">
         <div class="search-bar-input">
-          <input type="text" id="search" placeholder="Buscar asignatura" autocomplete="no"/>
+          <input
+            type="text"
+            id="search"
+            placeholder="Buscar asignatura"
+            autocomplete="no"
+            [(ngModel)]="queryBusqueda"
+            (keydown.enter)="filtrarMonitorias()"
+          />
         </div>
         <div class="search-bar-icon">
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" (click)="filtrarMonitorias()">
             <i class="fas fa-search"></i>
           </button>
         </div>
       </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 my-4">
+    <div *ngIf="loading" class="row mt-4">
+      <div class="row my-2">
+        <p-skeleton class="col-6" width="100%" height="15rem" borderRadius="16px"></p-skeleton>
+        <p-skeleton class="col-6" width="100%" height="15rem" borderRadius="16px"></p-skeleton>
+      </div>
+      <div class="row my-2">
+        <p-skeleton class="col-6" width="100%" height="15rem" borderRadius="16px"></p-skeleton>
+        <p-skeleton class="col-6" width="100%" height="15rem" borderRadius="16px"></p-skeleton>
+      </div>
+    </div>
+    <div *ngIf="!loading" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 my-4">
       <div *ngFor="let monitoria of monitorias" class="col">
         <div class="card card-clickable rounded-5">
           <img [src]="monitorPicture" class="card-img-top rounded-top-5 ">
           <div class="card-body">
-            <h3 class="card-title">{{ monitoria.id }}</h3>
-            <h6 class="card-subtitle">{{ monitoria.course }}</h6>
-            <p class="card-text">{{ monitoria.description }}</p>
+            <span class="card-title fs-4">{{ monitoria.monitor }}</span>
+            <h6 class="card-subtitle fs-5 fw-bold mt-1">{{ monitoria.course }}</h6>
+            <p class="card-text text-secondary mt-2">{{ monitoria.description }}</p>
             <a [routerLink]="['./monitor/',monitoria.id]" class="stretched-link"></a>
+            <div class="d-flex gap-3">
+              <p-tag [value]="monitoria.price | currency"></p-tag>
+              <p-tag icon="pi pi-book" [value]="monitoria.modality"></p-tag>
+            </div>
           </div>
         </div>
       </div>

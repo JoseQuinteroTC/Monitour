@@ -11,6 +11,8 @@ export const environment = {
     monitoriasByMonitorId: 'monitorias/',
     registerMonitoria: 'registerMonitoria',
     modificarMonitoria: 'modificarMonitoria',
-    deleteMonitoria: 'deleteMonitoria/'
+    deleteMonitoria: 'deleteMonitoria/',
+    registerMonitor: 'registerMonitor',
+    busquedaMonitorias: 'monitoriasName/'
   }
 }

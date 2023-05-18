@@ -43,4 +43,11 @@ export class MonitoriasService {
     );
   }
 
+  buscarMonitorias(query: string) {
+    return this.http.get(
+      environment.API_URL + environment.methods.busquedaMonitorias
+      + query
+    );
+  }
+
 }

@@ -10,7 +10,8 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
+import { SkeletonModule } from 'primeng/skeleton';
+import { TagModule } from 'primeng/tag';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputTextModule,
     DynamicDialogModule,
     ToastModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    SkeletonModule,
+    TagModule
   ],
   exports: [
     AutoCompleteModule,
@@ -34,7 +37,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputTextModule,
     DynamicDialogModule,
     ToastModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    SkeletonModule,
+    TagModule
   ],
   providers: [DialogService, MessageService]
 })

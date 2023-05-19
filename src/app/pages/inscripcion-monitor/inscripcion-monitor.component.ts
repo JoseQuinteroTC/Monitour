@@ -28,7 +28,7 @@ export class InscripcionMonitorComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    firstValueFrom(this.authService.getUserByToken()).then(
+    this.authService.getUserByToken().subscribe(
       user => this.usuario = user
     );
   }
@@ -46,10 +46,10 @@ export class InscripcionMonitorComponent implements OnInit {
       url_img_profile: 'assets/img/stockMonitor.jpg'
     }
 
-    this.usuarioService.registerMonitor(body).subscribe(
-      (resp) => {
-        this.router.navigate(['/']);
+    firstValueFrom(this.usuarioService.registerMonitor(body)).then(
+      resp => {
+        window.location.replace('/');
       }
-    )
+    );
   }
 }

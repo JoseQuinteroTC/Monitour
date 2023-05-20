@@ -6,11 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PrimengModule } from './primeng/primeng.module';
+import { TruncStringPipe } from '../pipes/trunc-string.pipe';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TruncStringPipe
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { PrimengModule } from './primeng/primeng.module';
     FooterComponent,
     FormsModule,
     ReactiveFormsModule,
-    PrimengModule
+    PrimengModule,
+    TruncStringPipe
   ]
 })
 export class SharedModule { }

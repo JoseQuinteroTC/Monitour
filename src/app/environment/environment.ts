@@ -13,6 +13,7 @@ export const environment = {
     modificarMonitoria: 'modificarMonitoria',
     deleteMonitoria: 'deleteMonitoria/',
     registerMonitor: 'registerMonitor',
-    busquedaMonitorias: 'monitoriasName/'
+    busquedaMonitorias: 'monitoriasName/',
+    monitoriaById: 'monitorias/'
   }
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BusquedaComponent } from './busqueda.component';
 import { BusquedaRoutingModule } from './busqueda-routing.module';
-import { DetallesMonitorComponent } from './detalles-monitor/detalles-monitor.component';
+import { DetallesMonitoriaComponent } from './detalles-monitoria/detalles-monitoria.component';
 import { GridMonitoresComponent } from './grid-monitores/grid-monitores.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -11,7 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   declarations: [
     BusquedaComponent,
-    DetallesMonitorComponent,
+    DetallesMonitoriaComponent,
     GridMonitoresComponent
   ],
   imports: [

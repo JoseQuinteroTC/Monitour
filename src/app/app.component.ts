@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AdminObservableService } from './services/observables/admin.observable.service';
 import { AuthService } from './services/auth.service';
 
 @Component({

@@ -29,6 +29,13 @@ export class MonitoriasService {
     );
   }
 
+  getMonitoriaById(id: number) {
+    return this.http.get(
+      environment.API_URL + environment.methods.monitoriaById
+      + id
+    );
+  }
+
   updateMonitoria(body: any) {
     return this.http.post(
       environment.API_URL + environment.methods.modificarMonitoria,

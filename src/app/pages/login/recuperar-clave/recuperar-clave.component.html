@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="recuperarModal" tabindex="-1" aria-labelledby="recuperarLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-dialog modal-dialog-centered modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="recuperarLabel">Recuperar mi contraseña</h1>
@@ -15,7 +15,7 @@
             <input type="text" placeholder="Correo electronico" class="form-control w-100" name="recoverEmail" id="recoverEmail">
           </div>
           <div>
-            <button type="button" class="btn btn-primary" (click)="recoverPassword()">Enviar</button>
+            <button type="button" class="btn btn-primary w-50" (click)="recoverPassword()">Enviar</button>
           </div>
         </div>
       </div>
@@ -25,7 +25,8 @@
             A continuacion ingresa el codigo que te acabamos de enviar a el correo que ingresaste. El mensaje puede tardar unos minutos
           </div>
           <div class="d-flex flex-column gap-3">
-            <input type="text" placeholder="Correo electronico" class="form-control w-100" name="recoverEmail" id="recoverEmail">
+            <input type="text" placeholder="Codigo de recuperacion" class="form-control w-100" name="recoverEmail" id="recoverEmail">
+            <button type="button" class="btn btn-primary w-50" (click)="recoverPassword()">Enviar</button>
           </div>
         </div>
       </div>

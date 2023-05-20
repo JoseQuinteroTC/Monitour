@@ -42,7 +42,8 @@ export class AuthService {
 
   getUserByToken() {
     const token = this.getToken();
-    if (this.currentUser) {
+
+    if (this.currentUser || !token) {
       return of(this.currentUser);
     }
 

@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { firstValueFrom } from 'rxjs';
 import { MonitoriaObservablesService } from 'src/app/services/observables/monitoria-observables.service';
+import { MonitoriaModel } from 'src/app/models/monitoria.model';
 
 @Component({
   selector: 'app-mis-monitorias',
@@ -16,7 +17,7 @@ import { MonitoriaObservablesService } from 'src/app/services/observables/monito
 export class MisMonitoriasComponent implements OnInit{
 
   monitor: UsuarioModel;
-  monitorias: any[] = [];
+  monitorias: MonitoriaModel[] = [];
   loading: boolean = false;
 
   constructor(
@@ -45,7 +46,7 @@ export class MisMonitoriasComponent implements OnInit{
   cargarMonitorias() {
     this.loading = true;
     this.monitoriasService.getMonitoriasByMonitor(this.monitor.id).subscribe(
-      (monitorias: any[]) => {
+      (monitorias: MonitoriaModel[]) => {
         console.log(monitorias);
         this.monitorias = monitorias;
         this.loading = false;

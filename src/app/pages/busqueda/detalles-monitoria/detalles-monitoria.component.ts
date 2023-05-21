@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
 import { MonitoriaModel } from 'src/app/models/monitoria.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { MonitoriasService } from 'src/app/services/monitorias.service';
+import { ContactarMonitorComponent } from '../contactar-monitor/contactar-monitor.component';
 
 @Component({
   selector: 'app-detalles-monitoria',
@@ -15,28 +17,7 @@ export class DetallesMonitoriaComponent {
   monitor: UsuarioModel;
   modalidadMensaje: String;
 
-  monitoriasRecomendadas: any[] = [
-    {
-      monitor: "Juanito Perez",
-      precio: 15000,
-      modalidad: "Presencial"
-    },
-    {
-      monitor: "Juanito Perez",
-      precio: 15000,
-      modalidad: "Presencial"
-    },
-    {
-      monitor: "Juanito Perez",
-      precio: 15000,
-      modalidad: "Presencial"
-    },
-    {
-      monitor: "Juanito Perez",
-      precio: 15000,
-      modalidad: "Presencial"
-    }
-  ];
+  monitoriasRecomendadas: any[] = [];
 
   responsiveOptions = [
     {
@@ -58,7 +39,8 @@ export class DetallesMonitoriaComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private monitoriasService: MonitoriasService
+    private monitoriasService: MonitoriasService,
+    private dialogService: DialogService
     ) { }
 
   ngOnInit() {
@@ -70,9 +52,20 @@ export class DetallesMonitoriaComponent {
         this.monitoria = monitoria;
         this.monitor = monitor;
         this.setModalidadMensaje();
+        this.getMonitoriasRecomendadas();
+      }
+    );
+
+
+  }
+
+  getMonitoriasRecomendadas() {
+    this.monitoriasService.getMonitoriasRecomendadas(this.monitoria.id).subscribe(
+      (monitorias: any[]) => {
+        this.monitoriasRecomendadas = monitorias;
+        console.log(monitorias);
       }
     )
-
   }
 
   setModalidadMensaje() {
@@ -96,5 +89,16 @@ export class DetallesMonitoriaComponent {
         `
         break;
     }
+  }
+
+  contactarMonitor() {
+    this.dialogService.open(
+      ContactarMonitorComponent,
+      {
+        header: "Contactar monitor",
+        data: this.monitoriaId,
+        width: "40rem"
+      }
+    )
   }
 }

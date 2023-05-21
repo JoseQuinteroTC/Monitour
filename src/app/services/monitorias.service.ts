@@ -57,4 +57,18 @@ export class MonitoriasService {
     );
   }
 
+  getMonitoriasRecomendadas(id: number) {
+    return this.http.get(
+      environment.API_URL + environment.methods.monitoriasRecomendadas
+      + id
+    );
+  }
+
+  getContactoMonitor(idMonitoria: number) {
+    return this.http.get(
+      environment.API_URL + environment.methods.contactoMonitorQR
+      + idMonitoria,
+      { responseType: 'text' }
+    );
+  }
 }

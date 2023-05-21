@@ -8,12 +8,14 @@ export const environment = {
     updateUser: 'updateData',
     updatePassword: 'updatePassword',
     deleteUser: 'deleteUser/',
-    monitoriasByMonitorId: 'monitorias/',
+    monitoriasByMonitorId: 'monitorias/monitor/',
     registerMonitoria: 'registerMonitoria',
     modificarMonitoria: 'modificarMonitoria',
     deleteMonitoria: 'deleteMonitoria/',
     registerMonitor: 'registerMonitor',
     busquedaMonitorias: 'monitoriasName/',
-    monitoriaById: 'monitorias/'
+    monitoriaById: 'monitorias/',
+    monitoriasRecomendadas: 'monitorias/recomendadas/',
+    contactoMonitorQR: 'qr/'
   }
 }

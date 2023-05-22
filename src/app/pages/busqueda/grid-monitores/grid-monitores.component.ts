@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { MonitoriaModel } from 'src/app/models/monitoria.model';
 import { MonitoriasService } from 'src/app/services/monitorias.service';
+import { environment } from 'src/app/environment/environment';
 
 @Component({
   selector: 'app-grid-monitores',
@@ -11,6 +12,7 @@ import { MonitoriasService } from 'src/app/services/monitorias.service';
 })
 export class GridMonitoresComponent implements OnInit {
 
+  urlImg: string = environment.BASE_URL;
   monitorias: MonitoriaModel[];
   monitorPicture: string = "assets/img/stockMonitor.jpg";
   loading: boolean;

@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FileUpload } from 'primeng/fileupload';
 import { firstValueFrom } from 'rxjs';
+import { environment } from 'src/app/environment/environment';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-detalles-usuario',
@@ -11,13 +14,18 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./detalles-usuario.component.css', '../../../utils/validaciones.css']
 })
 export class DetallesUsuarioComponent {
+  @ViewChild('profileImg') profileImg: FileUpload;
+
   user: UsuarioModel;
+  userImage: string;
+  baseImgUrl: string = environment.BASE_URL + 'profile_photo/';
   deleteCheck: boolean = false;
 
   // Loaders
   changingPassword: boolean = false;
   updatingUser: boolean = false;
   deleting: boolean = false;
+  loading: boolean = false;
 
   //Message booleans
   passwordChanged: boolean = false;
@@ -39,16 +47,19 @@ export class DetallesUsuarioComponent {
 
   constructor(
     private authService: AuthService,
+    private usuarioService: UsuarioService,
     private fb: FormBuilder,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.authService.getUserByToken().subscribe(
       (resp) => {
         console.log(resp);
         this.user = resp;
         this.setUserData();
+        this.loading = false;
       }
     )
   }
@@ -57,6 +68,7 @@ export class DetallesUsuarioComponent {
     if (!this.user) {
       return;
     }
+    this.getUserImage();
     this.userFormGroup.controls['name'].setValue(this.user.name);
     this.userFormGroup.controls['lastName'].setValue(this.user.lastName);
     this.userFormGroup.controls['email'].setValue(this.user.email);
@@ -143,5 +155,23 @@ export class DetallesUsuarioComponent {
         this.router.navigate(['']);
       }
     );
+  }
+
+  onSelect(event: any) {
+    const body: FormData = new FormData;
+    body.append('id', this.user.id.toString());
+    body.append('foto', event.currentFiles[0]);
+    this.usuarioService.subirFotoPerfil(body).subscribe(
+      (resp) => {
+        this.profileImg.clear();
+        window.location.reload();
+      }
+    )
+  }
+
+  getUserImage() {
+    const timestamp = Date.now();
+    this.userImage = this.baseImgUrl + this.user.url_img_profile + `?timestamp=${timestamp}`;
+    console.log(this.userImage)
   }
 }

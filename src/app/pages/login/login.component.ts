@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { AdminObservableService } from 'src/app/services/observables/admin.observable.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,8 @@ export class LoginComponent {
   constructor(
     private adminObservables: AdminObservableService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private dialogService: DialogService
   ){}
 
   userEmail: string = '';
@@ -54,5 +57,15 @@ export class LoginComponent {
         console.log(error);
       }
     });
+  }
+
+  recuperarClave() {
+    this.dialogService.open(
+      RecuperarClaveComponent,
+      {
+        header: 'Recuperar contraseña',
+        width: '35rem'
+      }
+    )
   }
 }

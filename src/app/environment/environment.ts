@@ -1,5 +1,6 @@
 export const environment = {
   API_URL: 'https://monitour.online/api/',
+  BASE_URL: 'https://monitour.online/',
   methods: {
     login: 'login',
     register: 'register',
@@ -16,6 +17,7 @@ export const environment = {
     busquedaMonitorias: 'monitoriasName/',
     monitoriaById: 'monitorias/',
     monitoriasRecomendadas: 'monitorias/recomendadas/',
-    contactoMonitorQR: 'qr/'
+    contactoMonitorQR: 'qr/',
+    subirImagenMonitor: 'img'
   }
 }

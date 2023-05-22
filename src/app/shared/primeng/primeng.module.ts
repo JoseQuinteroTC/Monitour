@@ -13,6 +13,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TagModule } from 'primeng/tag';
 import { CarouselModule } from 'primeng/carousel';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CarouselModule } from 'primeng/carousel';
     ProgressSpinnerModule,
     SkeletonModule,
     TagModule,
-    CarouselModule
+    CarouselModule,
+    FileUploadModule
   ],
   exports: [
     AutoCompleteModule,
@@ -42,7 +44,8 @@ import { CarouselModule } from 'primeng/carousel';
     ProgressSpinnerModule,
     SkeletonModule,
     TagModule,
-    CarouselModule
+    CarouselModule,
+    FileUploadModule
   ],
   providers: [DialogService, MessageService]
 })

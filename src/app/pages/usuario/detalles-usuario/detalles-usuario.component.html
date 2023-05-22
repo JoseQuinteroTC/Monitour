@@ -1,6 +1,46 @@
-<div class="row gap-5 p-4">
-  <section class="col-12 col-lg-4 card p-4 shadow">
-    <h3 class="mb-4">Informacion general</h3>
+<div *ngIf="loading" class="row gap-4 p-4">
+  <div class="col">
+    <p-skeleton width="100%" height="40rem"></p-skeleton>
+  </div>
+  <div class="col">
+    <p-skeleton width="100%" height="40rem"></p-skeleton>
+  </div>
+</div>
+<div *ngIf="!loading" class="row gap-4 p-4">
+  <section *ngIf="user?.document" class="col-12 col-lg card p-4 shadow h-50">
+    <h4 class="fw-bold mb-3">Foto de perfil</h4>
+    <div class="d-flex flex-column align-items-center">
+      <div
+        class="rounded-circle profile-picture"
+        [style]="{'background-image': 'url(' + userImage + ')'}"
+      >
+        <div class="rounded-circle edit-icon-container">
+          <p-fileUpload
+            #profileImg
+            id="fileUpload"
+            name="profileUpload"
+            chooseIcon="bi-pencil-fill"
+            [auto]="true"
+            styleClass="rounded-circle"
+            [style]="{'padding': '15px 25px'}"
+            [fileLimit]="1"
+            mode="basic"
+            name="demo[]"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            (onSelect)="onSelect($event)"
+            [customUpload]="true"
+          >
+          </p-fileUpload>
+        </div>
+      </div>
+      <p class="text-secondary mt-3">
+        Esta sera la foto que podran ver los estudiantes al entrar a tus monitorias
+      </p>
+    </div>
+  </section>
+  <section class="col-12 col-lg card p-4 shadow">
+    <h4 class="mb-4 fw-bold">Información general</h4>
     <form [formGroup]="userFormGroup" #userForm="ngForm" (ngSubmit)="updateUser()">
       <div class="mb-3">
         <label for="name" class="form-label">
@@ -66,7 +106,6 @@
             formControlName="description"
           ></textarea>
         </div>
-
       </div>
       <div class="mb-3">
         <div *ngIf="userUpdated" class="success-message">
@@ -82,9 +121,9 @@
       </button>
     </form>
   </section>
-  <section class="col-12 col-lg-6 card p-4 shadow">
-    <div class="p-4">
-      <h4 class="mb-3">Cambiar contraseña</h4>
+  <section class="col-12 col-lg card p-4 shadow">
+    <div>
+      <h4 class="mb-3 fw-bold">Cambiar contraseña</h4>
       <form [formGroup]="passwordFormGroup" #passwordForm="ngForm" (ngSubmit)="changePassword()">
         <div class="mb-3">
           <label for="password" class="form-label">
@@ -143,8 +182,8 @@
         </button>
       </form>
     </div>
-    <div class="p-4">
-      <h4 class="mb-3">
+    <div class="mt-4">
+      <h4 class="mb-3 fw-bold">
         Eliminar cuenta
       </h4>
       <p>

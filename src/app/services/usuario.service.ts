@@ -17,4 +17,11 @@ export class UsuarioService {
       body
     );
   }
+
+  subirFotoPerfil(body: FormData) {
+    return this.http.post(
+      environment.API_URL + environment.methods.subirImagenMonitor,
+      body
+    );
+  }
 }

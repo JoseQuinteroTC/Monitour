@@ -38,3 +38,19 @@
 .nav-link .link-active {
   color: #4f96ff;
 }
+
+.profile-picture {
+  background-color: #f4f4f4;
+  border: 1px solid #858585;
+  height: 15rem;
+  width: 15rem;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.edit-icon-container {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}

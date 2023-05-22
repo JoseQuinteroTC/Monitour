@@ -1,34 +1,91 @@
-<!-- Modal -->
-<div class="modal fade" id="recuperarModal" tabindex="-1" aria-labelledby="recuperarLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="recuperarLabel">Recuperar mi contraseña</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+<div class="modal-content">
+  <div *ngIf="!emailSent" class="modal-body p-4">
+    <div class="d-flex flex-column gap-3">
+      <div>
+        Para recuperar tu contraseña, ingresa el correo electronico asociado a tu cuenta
       </div>
-      <div *ngIf="!emailSent" class="modal-body p-5">
-        <div class="d-flex flex-column gap-3">
-          <div>
-            Para recuperar tu contraseña, ingresa el correo electronico asociado a tu cuenta:
-          </div>
-          <div>
-            <input type="text" placeholder="Correo electronico" class="form-control w-100" name="recoverEmail" id="recoverEmail">
-          </div>
-          <div>
-            <button type="button" class="btn btn-primary w-50" (click)="recoverPassword()">Enviar</button>
-          </div>
+      <form #formEmail="ngForm" (ngSubmit)="enviarCorreo()">
+        <div class="mb-3">
+          <input
+            [(ngModel)]="correo"
+            placeholder="Correo electronico"
+            email="true"
+            class="form-control w-100"
+            name="emailUsuario"
+            id="emailUsuario"
+            [ngClass]="{'invalid': formEmail.invalid && formEmail.submitted}"
+            required
+          >
         </div>
-      </div>
-      <div *ngIf="emailSent" class="modal-body p-5">
         <div>
-          <div class="mb-3">
-            A continuacion ingresa el codigo que te acabamos de enviar a el correo que ingresaste. El mensaje puede tardar unos minutos
-          </div>
-          <div class="d-flex flex-column gap-3">
-            <input type="text" placeholder="Codigo de recuperacion" class="form-control w-100" name="recoverEmail" id="recoverEmail">
-            <button type="button" class="btn btn-primary w-50" (click)="recoverPassword()">Enviar</button>
-          </div>
+          <button type="submit" class="btn btn-primary w-50">Enviar</button>
         </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="emailSent && !codeSent" class="modal-body p-4">
+    <div>
+      <div class="mb-3">
+        A continuacion ingresa el codigo que te acabamos de enviar a el correo que ingresaste.
+        El mensaje puede tardar unos minutos
+      </div>
+      <div class="d-flex flex-column gap-3">
+        <form #formCode="ngForm" (ngSubmit)="enviarCodigo()">
+          <div class="mb-3">
+            <input
+              [(ngModel)]="codigoSeguridad"
+              placeholder="Codigo de seguridad"
+              type="text"
+              class="form-control w-100"
+              name="codigoEmail"
+              id="codigoEmail"
+              [ngClass]="{'invalid': formCode.invalid && formCode.submitted}"
+              required
+            >
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary w-50">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="codeSent" class="modal-body p-4">
+    <div>
+      <div class="mb-3">
+        Rellena los campos a continuación para reestablecer tu contraseña
+      </div>
+      <div class="d-flex flex-column gap-3">
+        <form #formPassword="ngForm" (ngSubmit)="cambiarClave()">
+          <div class="mb-3">
+            <label for="newPassword" class="form-label">Nueva contraseña</label>
+            <input
+              [(ngModel)]="nuevaClave"
+              type="password"
+              minlength="8"
+              class="form-control w-100"
+              name="newPassword"
+              id="newPassword"
+              [ngClass]="{'invalid': formPassword.invalid && formPassword.submitted}"
+              required
+            >
+            <div class="form-text">La contraseña debe tener minimo 8 caracteres</div>
+          </div>
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+            <input
+              [(ngModel)]="confirmarClave"
+              type="password"
+              class="form-control w-100"
+              name="confirmPassword"
+              id="confirmPassword"
+              [ngClass]="{'invalid': formPassword.invalid && formPassword.submitted}"
+              required
+            >
+            <div class="form-text">Las contraseñas ingresadas no son iguales</div>
+          </div>
+          <button type="submit" class="btn btn-primary w-50">Cambiar contraseña</button>
+        </form>
       </div>
     </div>
   </div>

@@ -8,4 +8,5 @@ export interface MonitoriaModel {
   modality: string;
   views?: number;
   request?: number;
+  url_img_profile?: string;
 }

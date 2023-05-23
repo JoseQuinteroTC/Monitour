@@ -10,9 +10,10 @@
   <section *ngIf="user?.document" class="col-12 col-lg card p-4 shadow h-50">
     <h4 class="fw-bold mb-3">Foto de perfil</h4>
     <div class="d-flex flex-column align-items-center">
+      <div class="img-test"></div>
       <div
         class="rounded-circle profile-picture"
-        [style]="{'background-image': 'url(' + userImage + ')'}"
+        [style]="{'background-image': 'url('+ userImage +')'}"
       >
         <div class="rounded-circle edit-icon-container">
           <p-fileUpload

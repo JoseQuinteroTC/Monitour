@@ -16,9 +16,18 @@
             [ngClass]="{'invalid': formEmail.invalid && formEmail.submitted}"
             required
           >
+          <div *ngIf="formEmail.controls['emailUsuario']?.errors?.['notFound']" class="form-text text-red">
+            No existe un usuario registrado con el correo ingresado
+          </div>
         </div>
         <div>
-          <button type="submit" class="btn btn-primary w-50">Enviar</button>
+          <button *ngIf="!loading" type="submit" class="btn btn-primary">
+            Enviar
+          </button>
+          <button *ngIf="loading" class="btn btn-primary" type="submit" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Enviando..
+          </button>
         </div>
       </form>
     </div>
@@ -42,9 +51,18 @@
               [ngClass]="{'invalid': formCode.invalid && formCode.submitted}"
               required
             >
+            <div *ngIf="formCode.controls['codigoEmail']?.errors?.['invalid']" class="form-text text-red">
+              El codigo ingresado es invalido
+            </div>
           </div>
           <div>
-            <button type="submit" class="btn btn-primary w-50">Enviar</button>
+            <button *ngIf="!loading" type="submit" class="btn btn-primary">
+              Enviar
+            </button>
+            <button *ngIf="loading" class="btn btn-primary" type="submit" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Verificando..
+            </button>
           </div>
         </form>
       </div>
@@ -82,9 +100,19 @@
               [ngClass]="{'invalid': formPassword.invalid && formPassword.submitted}"
               required
             >
-            <div class="form-text">Las contraseñas ingresadas no son iguales</div>
+            <div *ngIf="formPassword.controls['confirmPassword']?.errors?.['notEqual']" class="form-text text-red">
+              Las contraseñas ingresadas no son iguales
+            </div>
           </div>
-          <button type="submit" class="btn btn-primary w-50">Cambiar contraseña</button>
+          <button type="submit" class="btn btn-primary w-50">
+            <<button *ngIf="!loading" type="submit" class="btn btn-primary">
+              Guardar
+            </button>
+            <button *ngIf="loading" class="btn btn-primary" type="submit" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Guardando...
+            </button>
+          </button>
         </form>
       </div>
     </div>

@@ -12,9 +12,8 @@ import { environment } from 'src/app/environment/environment';
 })
 export class GridMonitoresComponent implements OnInit {
 
-  urlImg: string = environment.BASE_URL;
+  urlImg: string = environment.BASE_URL + 'profile_photo/';
   monitorias: MonitoriaModel[];
-  monitorPicture: string = "assets/img/stockMonitor.jpg";
   loading: boolean;
   queryBusqueda: string;
 
@@ -61,6 +60,11 @@ export class GridMonitoresComponent implements OnInit {
         this.monitorias = monitorias;
       }
     )
+  }
+
+  getMonitorImage(monitoria) {
+    const timestamp = Date.now();
+    return this.urlImg + monitoria.url_img_profile + `?timestamp=${timestamp}`;
   }
 }
 

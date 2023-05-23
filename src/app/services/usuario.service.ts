@@ -24,4 +24,24 @@ export class UsuarioService {
       body
     );
   }
+
+  emailClave(email: string) {
+    return this.http.get(
+      environment.API_URL + "email/" + email
+    );
+  }
+
+  codigoClave(body: FormData) {
+    return this.http.post(
+      environment.API_URL + "reset",
+      body
+    );
+  }
+
+  changePasswordByPin(body: FormData) {
+    return this.http.post(
+      environment.API_URL + "resetPassword",
+      body
+    );
+  }
 }

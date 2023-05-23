@@ -42,8 +42,7 @@ export class InscripcionMonitorComponent implements OnInit {
       id: this.usuario.id,
       description: this.descripcion,
       phone_number: this.celular,
-      document: this.documento,
-      url_img_profile: 'assets/img/stockMonitor.jpg'
+      document: this.documento
     }
 
     firstValueFrom(this.usuarioService.registerMonitor(body)).then(

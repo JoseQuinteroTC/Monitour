@@ -54,3 +54,8 @@
   right: 20px;
   bottom: 10px;
 }
+
+.img-default {
+  background-image: url("src/assets/img/monitores/default.webp");
+  background-size: cover;
+}

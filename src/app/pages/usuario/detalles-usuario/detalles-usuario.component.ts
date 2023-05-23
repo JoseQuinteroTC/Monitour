@@ -171,6 +171,10 @@ export class DetallesUsuarioComponent {
 
   getUserImage() {
     const timestamp = Date.now();
+    if (!this.user.url_img_profile) {
+      this.userImage = "default.webp";
+      return;
+    }
     this.userImage = this.baseImgUrl + this.user.url_img_profile + `?timestamp=${timestamp}`;
     console.log(this.userImage)
   }

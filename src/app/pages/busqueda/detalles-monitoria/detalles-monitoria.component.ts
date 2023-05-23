@@ -5,6 +5,7 @@ import { MonitoriaModel } from 'src/app/models/monitoria.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { MonitoriasService } from 'src/app/services/monitorias.service';
 import { ContactarMonitorComponent } from '../contactar-monitor/contactar-monitor.component';
+import { environment } from 'src/app/environment/environment';
 
 @Component({
   selector: 'app-detalles-monitoria',
@@ -12,6 +13,7 @@ import { ContactarMonitorComponent } from '../contactar-monitor/contactar-monito
   styleUrls: ['./detalles-monitoria.component.css']
 })
 export class DetallesMonitoriaComponent {
+  urlImg: string = environment.BASE_URL + 'profile_photo/';
   monitoriaId: number;
   monitoria: MonitoriaModel;
   monitor: UsuarioModel;
@@ -100,5 +102,10 @@ export class DetallesMonitoriaComponent {
         width: "40rem"
       }
     )
+  }
+
+  getMonitorImage() {
+    const timestamp = Date.now();
+    return this.urlImg + this.monitor.url_img_profile + `?timestamp=${timestamp}`;
   }
 }

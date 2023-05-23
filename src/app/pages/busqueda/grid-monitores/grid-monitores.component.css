@@ -25,3 +25,7 @@
   width: 3.5rem;
   border-radius: 2rem;
 }
+
+.card-img-top {
+  max-height: 300px;
+}

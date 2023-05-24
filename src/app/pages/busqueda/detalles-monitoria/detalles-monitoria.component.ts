@@ -59,10 +59,13 @@ export class DetallesMonitoriaComponent {
 
   init() {
     this.loading = true;
+    const timestamp = Date.now();
     this.monitoriasService.getMonitoriaById(this.monitoriaId).subscribe(
       ({monitoria, monitor}: any) => {
         console.log(monitoria, monitor);
         this.monitoria = monitoria;
+        this.monitoria.url_img_profile =
+          this.urlImg + monitoria?.url_img_profile + `?timestamp=${timestamp}`;
         this.monitor = monitor;
         this.setModalidadMensaje();
         this.getMonitoriasRecomendadas();
@@ -72,10 +75,16 @@ export class DetallesMonitoriaComponent {
   }
 
   getMonitoriasRecomendadas() {
+    const timestamp = Date.now();
     this.monitoriasService.buscarMonitorias(this.monitoria.course).subscribe(
-      (monitorias: any) => {
-        this.monitoriasRecomendadas = monitorias;
-        console.log(monitorias);
+      (monitorias: MonitoriaModel[]) => {
+        this.monitoriasRecomendadas = monitorias.map(
+          (monitoria: MonitoriaModel) => {
+            monitoria.url_img_profile =
+              this.urlImg + monitoria?.url_img_profile + `?timestamp=${timestamp}`;
+            return monitoria;
+          }
+        );
       }
     )
   }
@@ -115,7 +124,7 @@ export class DetallesMonitoriaComponent {
   }
 
   getMonitorImage() {
-    const timestamp = Date.now();
-    return this.urlImg + this.monitor?.url_img_profile + `?timestamp=${timestamp}`;
+
+    return
   }
 }

@@ -1,3 +1,7 @@
 .badge {
   padding: .8rem 1.5rem !important;
 }
+
+.card-img-top {
+  max-height: 250px;
+}

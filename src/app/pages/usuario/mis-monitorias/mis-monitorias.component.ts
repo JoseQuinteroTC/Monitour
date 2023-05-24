@@ -8,6 +8,7 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 import { firstValueFrom } from 'rxjs';
 import { MonitoriaObservablesService } from 'src/app/services/observables/monitoria-observables.service';
 import { MonitoriaModel } from 'src/app/models/monitoria.model';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-mis-monitorias',
@@ -23,6 +24,7 @@ export class MisMonitoriasComponent implements OnInit{
   constructor(
     private dialogService: DialogService,
     private monitoriasService: MonitoriasService,
+    private messageService: MessageService,
     private monitoriasObservables: MonitoriaObservablesService,
     private authService: AuthService
   ) {}
@@ -71,6 +73,15 @@ export class MisMonitoriasComponent implements OnInit{
   // ]
 
   showModalMonitoria(monitoria?: any) {
+    if (!this.monitor.url_img_profile) {
+      this.messageService.add({
+        severity: 'error',
+        key: 'toastmonitorias',
+        life: 4000,
+        detail: 'Debe cargar una imagen de perfil para poder publicar monitorias'
+      })
+      return;
+    }
     this.dialogService.open(
       CrearEditarMonitoriaComponent,
       {header: 'Detalles de la monitoria', data: monitoria? monitoria : ""}

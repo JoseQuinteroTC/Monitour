@@ -64,8 +64,14 @@ export class DetallesMonitoriaComponent {
       ({monitoria, monitor}: any) => {
         console.log(monitoria, monitor);
         this.monitoria = monitoria;
-        this.monitoria.url_img_profile =
-          this.urlImg + monitoria?.url_img_profile + `?timestamp=${timestamp}`;
+        console.log(monitoria.url_img_profile);
+        if (!monitoria.url_img_profile) {
+          this.monitoria.url_img_profile = "assets/img/monitores/default.webp";
+        }
+        else {
+          this.monitoria.url_img_profile =
+            this.urlImg + monitoria?.url_img_profile + `?timestamp=${timestamp}`;
+        }
         this.monitor = monitor;
         this.setModalidadMensaje();
         this.getMonitoriasRecomendadas();
@@ -121,10 +127,5 @@ export class DetallesMonitoriaComponent {
         width: "40rem"
       }
     )
-  }
-
-  getMonitorImage() {
-
-    return
   }
 }

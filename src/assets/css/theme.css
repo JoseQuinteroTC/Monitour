@@ -1,4 +1,63 @@
 :root {
+  --primaryColor: #4f96ff;
+}
+
+.main-content {
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+}
+
+select {
+  cursor: pointer;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.btn-primary {
+  background-color: #4f96ff;
+  border-color: #4f96ff;
+}
+
+.btn-primary:hover {
+  background-color: #4087f0;
+  border-color: #4f96ff;
+}
+
+.btn-primary:active {
+  background-color: #2972df !important;
+  border-color: #2972df !important;
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+  background-color: #61a1ff;
+  border-color: #61a1ff;
+}
+
+.dropdown-item:hover{
+  background-color: #f1f9ff;
+}
+
+.dropdown-item:active {
+  background-color: #54aafe;
+}
+
+.auth-background {
+  background-color: #aed6fb;
+}
+
+.nav-link {
+  color: #000;
+}
+
+.nav-underline .nav-link.active, .nav-underline .show > .nav-link {
+  border-bottom-color: var(--primaryColor);
+}
+
+/* CUSTOM */
+:root {
   --surface-a:#ffffff;
   --surface-b:#efefef;
   --surface-c:#e9ecef;

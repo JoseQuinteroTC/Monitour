@@ -26,11 +26,10 @@
             ],
             "styles": [
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/assets/css/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/css/styles.css",
+              "src/assets/css/theme.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -98,11 +97,10 @@
             ],
             "styles": [
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/assets/css/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/css/styles.css",
+              "src/assets/css/theme.css",
               "src/styles.css"
             ],
             "scripts": [

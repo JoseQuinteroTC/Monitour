@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
       },
       error: (e) => {
         this.loading = false;
-        this.registerForm.controls['correo']?.setErrors({emailTaken: true});
+        this.registerForm.controls['email']?.setErrors({emailTaken: true});
         console.log(e);
       }
     });

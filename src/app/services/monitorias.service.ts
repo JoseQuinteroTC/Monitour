@@ -57,10 +57,10 @@ export class MonitoriasService {
     );
   }
 
-  getMonitoriasRecomendadas(id: number) {
+  getMonitoriasRecomendadas(course: string) {
     return this.http.get(
       environment.API_URL + environment.methods.monitoriasRecomendadas
-      + id
+      + course
     );
   }
 

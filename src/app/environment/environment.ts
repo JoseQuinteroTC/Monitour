@@ -16,7 +16,7 @@ export const environment = {
     registerMonitor: 'registerMonitor',
     busquedaMonitorias: 'monitoriasName/',
     monitoriaById: 'monitorias/',
-    monitoriasRecomendadas: 'monitorias/recomendadas/',
+    monitoriasRecomendadas: 'monitoriasRecomendadas/',
     contactoMonitorQR: 'qr/',
     subirImagenMonitor: 'img'
   }

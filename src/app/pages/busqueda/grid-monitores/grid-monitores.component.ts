@@ -42,8 +42,8 @@ export class GridMonitoresComponent implements OnInit {
     this.monitoriasService.getMonitorias().subscribe(
       (resp: any) => {
         console.log(resp);
-        this.loading = false;
         this.monitorias = resp;
+        this.loading = false;
       }
     )
   }
@@ -56,8 +56,8 @@ export class GridMonitoresComponent implements OnInit {
     this.loading = true;
     this.monitoriasService.buscarMonitorias(this.queryBusqueda).subscribe(
       (monitorias: MonitoriaModel[]) => {
-        this.loading = false;
         this.monitorias = monitorias;
+        this.loading = false;
       }
     )
   }

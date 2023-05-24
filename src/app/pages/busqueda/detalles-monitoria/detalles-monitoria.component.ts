@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MonitoriaModel } from 'src/app/models/monitoria.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -19,12 +19,14 @@ export class DetallesMonitoriaComponent {
   monitor: UsuarioModel;
   modalidadMensaje: String;
 
-  monitoriasRecomendadas: any[] = [];
+  loading: boolean = false;
+
+  monitoriasRecomendadas: MonitoriaModel[] = [];
 
   responsiveOptions = [
     {
         breakpoint: '1199px',
-        numVisible: 1,
+        numVisible: 2,
         numScroll: 1
     },
     {
@@ -47,7 +49,16 @@ export class DetallesMonitoriaComponent {
 
   ngOnInit() {
     // Obtener el valor del parámetro de ruta :id
-    this.monitoriaId = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.route.params.subscribe(
+      (route) => {
+        this.monitoriaId = route?.['id'];
+        this.init();
+      }
+    )
+  }
+
+  init() {
+    this.loading = true;
     this.monitoriasService.getMonitoriaById(this.monitoriaId).subscribe(
       ({monitoria, monitor}: any) => {
         console.log(monitoria, monitor);
@@ -55,15 +66,14 @@ export class DetallesMonitoriaComponent {
         this.monitor = monitor;
         this.setModalidadMensaje();
         this.getMonitoriasRecomendadas();
+        this.loading = false;
       }
     );
-
-
   }
 
   getMonitoriasRecomendadas() {
-    this.monitoriasService.getMonitoriasRecomendadas(this.monitoria.id).subscribe(
-      (monitorias: any[]) => {
+    this.monitoriasService.buscarMonitorias(this.monitoria.course).subscribe(
+      (monitorias: any) => {
         this.monitoriasRecomendadas = monitorias;
         console.log(monitorias);
       }
@@ -106,6 +116,6 @@ export class DetallesMonitoriaComponent {
 
   getMonitorImage() {
     const timestamp = Date.now();
-    return this.urlImg + this.monitor.url_img_profile + `?timestamp=${timestamp}`;
+    return this.urlImg + this.monitor?.url_img_profile + `?timestamp=${timestamp}`;
   }
 }

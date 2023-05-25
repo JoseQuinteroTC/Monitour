@@ -23,9 +23,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
    this.logged = this.adminObservables.isLoggedIn();
-   this.authService.getUserByToken().subscribe(
-    usuario => this.usuario = usuario
-   );
+   this.authService.getUserByToken().subscribe({
+    next: usuario => this.usuario = usuario,
+    error: e => this.logged = false
+   });
   }
 
   logout() {

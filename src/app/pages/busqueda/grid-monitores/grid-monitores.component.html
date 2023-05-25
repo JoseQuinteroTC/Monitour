@@ -29,8 +29,8 @@
         <p-skeleton class="col-6" width="100%" height="15rem" borderRadius="16px"></p-skeleton>
       </div>
     </div>
-    <div *ngIf="!loading" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 my-4">
-      <div *ngFor="let monitoria of monitorias" class="col">
+    <div *ngIf="!loading" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 my-4 justify-content-center">
+      <div *ngFor="let monitoria of monitorias" class="col-10 col-md-6 col-lg-4 monitor-card">
         <div class="card card-clickable rounded-5">
           <img [src]="monitoria.url_img_profile" class="card-img-top rounded-top-5">
           <div class="card-body">

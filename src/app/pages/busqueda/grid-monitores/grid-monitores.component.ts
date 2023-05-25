@@ -61,9 +61,16 @@ export class GridMonitoresComponent implements OnInit {
       return;
     }
     this.loading = true;
+    const timestamp = Date.now();
     this.monitoriasService.buscarMonitorias(this.queryBusqueda).subscribe(
       (monitorias: MonitoriaModel[]) => {
-        this.monitorias = monitorias;
+        this.monitorias = monitorias.map(
+          (monitoria: MonitoriaModel) => {
+            monitoria.url_img_profile =
+              this.urlImg + monitoria.url_img_profile + `?timestamp=${timestamp}`;
+            return monitoria;
+          }
+        );
         this.loading = false;
       }
     )

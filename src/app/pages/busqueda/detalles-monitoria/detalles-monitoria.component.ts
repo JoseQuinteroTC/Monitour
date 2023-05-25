@@ -6,6 +6,7 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 import { MonitoriasService } from 'src/app/services/monitorias.service';
 import { ContactarMonitorComponent } from '../contactar-monitor/contactar-monitor.component';
 import { environment } from 'src/app/environment/environment';
+import { AdminObservableService } from 'src/app/services/observables/admin.observable.service';
 
 @Component({
   selector: 'app-detalles-monitoria',
@@ -43,6 +44,8 @@ export class DetallesMonitoriaComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
+    private adminObservables: AdminObservableService,
     private monitoriasService: MonitoriasService,
     private dialogService: DialogService
     ) { }
@@ -88,9 +91,15 @@ export class DetallesMonitoriaComponent {
           (monitoria: MonitoriaModel) => {
             monitoria.url_img_profile =
               this.urlImg + monitoria?.url_img_profile + `?timestamp=${timestamp}`;
-            return monitoria;
+            if (monitoria.id != this.monitoria.id) {
+              return monitoria;
+            }
+            return null;
           }
         );
+        if (this.monitoriasRecomendadas.length > 6) {
+          this.monitoriasRecomendadas = this.monitoriasRecomendadas.slice(0, 5);
+        }
       }
     )
   }
@@ -99,26 +108,30 @@ export class DetallesMonitoriaComponent {
     switch (this.monitoria.modality) {
       case "Presencial":
         this.modalidadMensaje = `
-        Usted debera acordar con el monitor el metodo de reunion, ya sea dirigiendose a el domicilio del monitor,
-        solicitar que se imparta la clase en su domicilio o acordar un lugar en comun para reunirse
+        Usted debera acordar con el monitor el metodo de reunion, ya sea dirigiendose al domicilio del monitor,
+        solicitar que se imparta la clase en su domicilio o acordar un lugar en comun para reunirse.
         `
         break;
       case "Virtual":
         this.modalidadMensaje = `
-        Usted debera acordar con el monitor la plataforma y las herramientas que se utilizaran para el desarrollo de la clase
+        Usted debera acordar con el monitor la plataforma y las herramientas que se utilizaran para el desarrollo de la clase.
         `
         break;
       case "Hibrido":
         this.modalidadMensaje = `
-        En caso de ser presencial usted debera acordar con el monitor el metodo de reunion, ya sea dirigiendose a el domicilio del monitor,
+        En caso de ser presencial usted debera acordar con el monitor el metodo de reunion, ya sea dirigiendose al domicilio del monitor,
         solicitar que se imparta la clase en su domicilio o acordar un lugar en comun para reunirse, en caso de ser virtual debe acordar
-        la plataforma y las herramientas que se utilizaran para el desarrollo de la clase
+        la plataforma y las herramientas que se utilizaran para el desarrollo de la clase.
         `
         break;
     }
   }
 
   contactarMonitor() {
+    if (!this.adminObservables.isLoggedIn()) {
+      this.router.navigate(['/register']);
+      return;
+    }
     this.dialogService.open(
       ContactarMonitorComponent,
       {

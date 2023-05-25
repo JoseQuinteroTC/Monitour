@@ -29,3 +29,7 @@
 .card-img-top {
   max-height: 300px;
 }
+
+.monitor-card {
+  max-width: 400px;
+}

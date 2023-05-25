@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(
     private authService: AuthService
   ) {
-    this.authService.getUserByToken().subscribe();
+    this.authService.getUserByToken();
   }
 
   title = "Monitour";

@@ -84,22 +84,21 @@ export class DetallesMonitoriaComponent {
   }
 
   getMonitoriasRecomendadas() {
+    this.monitoriasRecomendadas = [];
     const timestamp = Date.now();
     this.monitoriasService.buscarMonitorias(this.monitoria.course).subscribe(
       (monitorias: MonitoriaModel[]) => {
-        this.monitoriasRecomendadas = monitorias.map(
-          (monitoria: MonitoriaModel) => {
+        for (const monitoria of monitorias) {
+          if (monitoria.id != this.monitoria.id) {
             monitoria.url_img_profile =
               this.urlImg + monitoria?.url_img_profile + `?timestamp=${timestamp}`;
-            if (monitoria.id != this.monitoria.id) {
-              return monitoria;
-            }
-            return null;
+            this.monitoriasRecomendadas.push(monitoria);
           }
-        );
+        }
         if (this.monitoriasRecomendadas.length > 6) {
           this.monitoriasRecomendadas = this.monitoriasRecomendadas.slice(0, 5);
         }
+        console.log(this.monitoriasRecomendadas);
       }
     )
   }

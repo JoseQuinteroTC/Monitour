@@ -42,6 +42,7 @@ export class GridMonitoresComponent implements OnInit {
     const timestamp = Date.now();
     this.monitoriasService.getMonitorias().subscribe(
       (monitorias: MonitoriaModel[]) => {
+        console.log(monitorias);
         this.monitorias = monitorias.map(
           (monitoria: MonitoriaModel) => {
             monitoria.url_img_profile =

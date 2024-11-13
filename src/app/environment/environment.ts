@@ -17,6 +17,7 @@ export const environment = {
     busquedaMonitorias: 'monitoriasName/',
     monitoriaById: 'monitorias/',
     monitoriasRecomendadas: 'monitoriasRecomendadas/',
+    calificarMonitor: 'calificacion/',
     contactoMonitorQR: 'qr/',
     subirImagenMonitor: 'img'
   }

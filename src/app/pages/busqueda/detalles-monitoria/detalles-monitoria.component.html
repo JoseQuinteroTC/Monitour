@@ -53,7 +53,9 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary btn-lg" (click)="contactarMonitor()">Contactar</button>
+          <p-rating [(ngModel)]="calificacion" [cancel]="false" (onRate)="enviarCalificacion()" />
         </div>
+
       </div>
     </div>
     <div class="row mt-5" *ngIf="monitoriasRecomendadas.length >= 3">

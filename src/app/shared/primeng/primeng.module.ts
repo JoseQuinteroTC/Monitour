@@ -14,6 +14,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { TagModule } from 'primeng/tag';
 import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
+import { RatingModule } from 'primeng/rating';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     SkeletonModule,
     TagModule,
     CarouselModule,
-    FileUploadModule
+    FileUploadModule,
+    RatingModule
   ],
   exports: [
     AutoCompleteModule,
@@ -45,7 +47,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     SkeletonModule,
     TagModule,
     CarouselModule,
-    FileUploadModule
+    FileUploadModule,
+    RatingModule
   ],
   providers: [DialogService, MessageService, DynamicDialogRef]
 })

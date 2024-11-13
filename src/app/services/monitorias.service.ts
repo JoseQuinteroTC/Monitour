@@ -71,4 +71,17 @@ export class MonitoriasService {
       { responseType: 'text' }
     );
   }
+
+  postEnviarCalificacion(idMonitor: number, calificacion: number) {
+   return this.http.post(
+      environment.API_URL + environment.methods.calificarMonitor + idMonitor,
+    {
+      "idMonitor": idMonitor,
+      "rating": calificacion
+    })
+  }
+
+  // this.http.post(this.apiUrl, payload).subscribe({
+  //   next: (response) => console.log('Calificación enviada:', response),
+  //   error: (err) => console.error('Error al enviar calificación:', err),
 }

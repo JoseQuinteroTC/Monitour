@@ -24,6 +24,8 @@ export class DetallesMonitoriaComponent {
 
   monitoriasRecomendadas: MonitoriaModel[] = [];
 
+  calificacion: number;
+
   responsiveOptions = [
     {
         breakpoint: '1199px',
@@ -139,5 +141,12 @@ export class DetallesMonitoriaComponent {
         width: "40rem"
       }
     )
+  }
+
+  enviarCalificacion(){
+    this.monitoriasService.postEnviarCalificacion(this.monitor.id, this.calificacion).subscribe({
+      next: (response) => console.log('Calificación enviada:', response),
+      error: (err) => console.error('Error al enviar calificación:', err),
+    });
   }
 }

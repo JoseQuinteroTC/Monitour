@@ -14,7 +14,7 @@ import { AdminObservableService } from 'src/app/services/observables/admin.obser
   styleUrls: ['./detalles-monitoria.component.css']
 })
 export class DetallesMonitoriaComponent {
-  urlImg: string = environment.BASE_URL + 'profile_photo/';
+  urlImg: string = environment.BASE_URL;
   monitoriaId: number;
   monitoria: MonitoriaModel;
   monitor: UsuarioModel;

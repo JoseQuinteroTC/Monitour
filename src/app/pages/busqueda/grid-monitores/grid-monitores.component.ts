@@ -12,7 +12,7 @@ import { environment } from 'src/app/environment/environment';
 })
 export class GridMonitoresComponent implements OnInit {
 
-  urlImg: string = environment.BASE_URL + 'profile_photo/';
+  urlImg: string = environment.BASE_URL;
   monitorias: MonitoriaModel[];
   loading: boolean;
   queryBusqueda: string;

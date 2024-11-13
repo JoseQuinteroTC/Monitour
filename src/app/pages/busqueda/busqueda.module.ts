@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { BusquedaComponent } from './busqueda.component';
 import { BusquedaRoutingModule } from './busqueda-routing.module';
@@ -7,6 +6,7 @@ import { DetallesMonitoriaComponent } from './detalles-monitoria/detalles-monito
 import { GridMonitoresComponent } from './grid-monitores/grid-monitores.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ContactarMonitorComponent } from './contactar-monitor/contactar-monitor.component';
+import { PrimengModule } from 'src/app/shared/primeng/primeng.module';
 
 
 @NgModule({
@@ -18,8 +18,8 @@ import { ContactarMonitorComponent } from './contactar-monitor/contactar-monitor
   ],
   imports: [
     BusquedaRoutingModule,
-    CommonModule,
-    SharedModule
+    SharedModule,
+    PrimengModule
   ]
 })
 export class BusquedaModule { }

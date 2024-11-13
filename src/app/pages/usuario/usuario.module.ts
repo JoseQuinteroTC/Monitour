@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { UsuarioRoutingModule } from './usuario-routing.module';
 import { UsuarioComponent } from './usuario.component';
@@ -8,6 +7,7 @@ import { DetallesUsuarioComponent } from './detalles-usuario/detalles-usuario.co
 import { MisMonitoriasComponent } from './mis-monitorias/mis-monitorias.component';
 import { EliminarMonitoriaComponent } from './mis-monitorias/eliminar-monitoria/eliminar-monitoria.component';
 import { CrearEditarMonitoriaComponent } from './mis-monitorias/crear-editar-monitoria/crear-editar-monitoria.component';
+import { PrimengModule } from 'src/app/shared/primeng/primeng.module';
 
 
 @NgModule({
@@ -19,9 +19,9 @@ import { CrearEditarMonitoriaComponent } from './mis-monitorias/crear-editar-mon
     CrearEditarMonitoriaComponent
   ],
   imports: [
-    CommonModule,
     UsuarioRoutingModule,
     SharedModule,
+    PrimengModule
   ]
 })
 export class UsuarioModule { }

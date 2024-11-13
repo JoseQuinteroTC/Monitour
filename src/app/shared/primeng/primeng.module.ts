@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -20,7 +19,6 @@ import { RatingModule } from 'primeng/rating';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     AutoCompleteModule,
     InputTextareaModule,
     DropdownModule,

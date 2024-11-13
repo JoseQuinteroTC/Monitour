@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { InscripcionMonitorRoutingModule } from './inscripcion-monitor-routing.module';
 import { InscripcionMonitorComponent } from './inscripcion-monitor.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { PrimengModule } from 'src/app/shared/primeng/primeng.module';
 
 
 @NgModule({
@@ -11,9 +11,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     InscripcionMonitorComponent
   ],
   imports: [
-    CommonModule,
     InscripcionMonitorRoutingModule,
-    SharedModule
+    SharedModule,
+    PrimengModule
   ]
 })
 export class InscripcionMonitorModule { }

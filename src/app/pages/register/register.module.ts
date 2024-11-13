@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { PrimengModule } from 'src/app/shared/primeng/primeng.module';
 
 
 @NgModule({
@@ -11,9 +11,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     RegisterComponent
   ],
   imports: [
-    CommonModule,
     RegisterRoutingModule,
-    SharedModule
+    SharedModule,
+    PrimengModule
   ],
   exports: [
     RegisterComponent

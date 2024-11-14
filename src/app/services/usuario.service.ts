@@ -47,7 +47,7 @@ export class UsuarioService {
 
   getCertificado(id: number) {
     return this.http.get(
-      environment.BASE_URL + environment.methods.descargarCertificado + id
+      environment.BASE_URL + environment.methods.descargarCertificado + id, { responseType: 'blob' }
     );
   }
 }

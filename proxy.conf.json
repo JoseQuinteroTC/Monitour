@@ -1,0 +1,8 @@
+{
+  "/generar-pdf": {
+    "target": "https://monitour.online",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

@@ -181,12 +181,29 @@ export class DetallesUsuarioComponent {
 
   descargarCertificado() {
     const idMonitor = this.user.id;
-    console.log('hola');
-    this.usuarioService.getCertificado(idMonitor).subscribe(
-      (resp) => {
-        console.log(resp);
+    const nameMonitor = this.user.name;  // Asegúrate de que 'name' esté definido correctamente en el objeto 'user'.
+
+    this.usuarioService.getCertificado(idMonitor).subscribe({
+      next: (response: Blob) => {
+        // Crear una URL para el archivo PDF
+        const fileURL = URL.createObjectURL(response);
+
+        // Crear un enlace para descargar el archivo
+        const link = document.createElement('a');
+        link.href = fileURL;
+        link.download = `certificado_horas_${nameMonitor}.pdf`; // Aquí interpolamos 'nameMonitor' correctamente
+        link.click();
+
+        // Liberar la URL del objeto
+        URL.revokeObjectURL(fileURL);
+
+        console.log('PDF descargado');
+      },
+      error: (err) => {
+        console.error('Error al descargar el PDF', err);
       }
-    )
+    });
   }
+
 
 }

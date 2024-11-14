@@ -178,4 +178,15 @@ export class DetallesUsuarioComponent {
     this.userImage = this.baseImgUrl + this.user.url_img_profile + `?timestamp=${timestamp}`;
     console.log(this.userImage)
   }
+
+  descargarCertificado() {
+    const idMonitor = this.user.id;
+    console.log('hola');
+    this.usuarioService.getCertificado(idMonitor).subscribe(
+      (resp) => {
+        console.log(resp);
+      }
+    )
+  }
+
 }

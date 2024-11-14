@@ -18,6 +18,7 @@ export const environment = {
     monitoriaById: 'monitorias/',
     monitoriasRecomendadas: 'monitoriasRecomendadas/',
     calificarMonitor: 'calificacion/',
+    descargarCertificado: 'generar-pdf/',
     contactoMonitorQR: 'qr/',
     subirImagenMonitor: 'img'
   }

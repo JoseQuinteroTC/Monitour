@@ -44,4 +44,10 @@ export class UsuarioService {
       body
     );
   }
+
+  getCertificado(id: number) {
+    return this.http.get(
+      environment.BASE_URL + environment.methods.descargarCertificado + id
+    );
+  }
 }

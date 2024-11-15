@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { FileUpload } from 'primeng/fileupload';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/app/environment/environment';
@@ -48,6 +49,7 @@ export class DetallesUsuarioComponent {
   constructor(
     private authService: AuthService,
     private usuarioService: UsuarioService,
+    private messageService: MessageService,
     private fb: FormBuilder,
     private router: Router
   ) { }
@@ -200,6 +202,11 @@ export class DetallesUsuarioComponent {
         console.log('PDF descargado');
       },
       error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          key: 'toastUsuario',
+          detail: "Error al descargar el certificado"
+        });
         console.error('Error al descargar el PDF', err);
       }
     });

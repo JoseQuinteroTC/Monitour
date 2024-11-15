@@ -18,7 +18,7 @@ export class DetallesUsuarioComponent {
 
   user: UsuarioModel;
   userImage: string;
-  baseImgUrl: string = environment.BASE_URL;
+  baseImgUrl: string = environment.BASE_URL + "profile_photo/";
   deleteCheck: boolean = false;
 
   // Loaders

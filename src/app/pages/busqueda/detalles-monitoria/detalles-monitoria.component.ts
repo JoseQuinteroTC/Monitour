@@ -14,7 +14,7 @@ import { AdminObservableService } from 'src/app/services/observables/admin.obser
   styleUrls: ['./detalles-monitoria.component.css']
 })
 export class DetallesMonitoriaComponent {
-  urlImg: string = environment.BASE_URL;
+  urlImg: string = environment.BASE_URL + "profile_photo/";
   monitoriaId: number;
   monitoria: MonitoriaModel;
   monitor: UsuarioModel;
@@ -75,7 +75,7 @@ export class DetallesMonitoriaComponent {
         }
         else {
           this.monitoria.url_img_profile =
-            this.urlImg + monitoria?.url_img_profile + `?timestamp=${timestamp}`;
+            this.urlImg + monitor?.url_img_profile + `?timestamp=${timestamp}`;
         }
         this.monitor = monitor;
         this.setModalidadMensaje();

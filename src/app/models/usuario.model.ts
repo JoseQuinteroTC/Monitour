@@ -7,4 +7,5 @@ export interface UsuarioModel {
   phone_number?: string;
   description?: string;
   url_img_profile?: string;
+  rating?: number;
 }
